@@ -1,4 +1,0 @@
-IP:139.214.116.203
-ssh用户:wsmssh 密码:wsmtec
-ftp用户:wsmftp 密码:wsmtec
-数据库用户:root 密码:password
