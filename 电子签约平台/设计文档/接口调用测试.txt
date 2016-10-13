@@ -31,3 +31,9 @@ http://139.214.116.203:8080/Seal/services/PdfSealService?wsdl
 <CustomerType>1<CustomerType/>
 </Body>
 </Request>
+
+测试KT系统，本地程序：
+http://local.mytest.com/query_socket_demo.php
+
+测试印章系统的本地程序：
+http://local.mytest.com/SealAutoPdf.php
