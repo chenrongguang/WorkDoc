@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>web demo</title>
+</head>
+<body>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">流程结束</div>
+        <div class="panel-body">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 panel panel-default">
+                <div style="margin-top: 15px;">
+                    <form id="person" class="form-horizontal">
+                        <!-- <div class="col-sm-12 text-center sign-succeed" style="margin-bottom: 15px;" id="signSucceed">保存成功</div>
+                        <div class="col-sm-12 text-center sign-failed" style="margin-bottom: 15px;display: none;" id="signFailed">保存失败</div> -->
+                        <div class="form-group">
+                            <label for="url" class="col-sm-3 control-label">文档下载地址</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="url" value="" readonly >
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-default" id="submit">重新初始化</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+    $(function() {
+        $('#url').val(window.url);
+    });
+
+    $('#submit').click(function(){
+        $('#main').load("init.html", function() {
+            window.devId = undefined;
+            window.accountId = undefined;
+            window.accountType = undefined;
+            window.project = undefined;
+            window.organize = undefined;
+            window.templateSeal = undefined;
+            window.drawSeal = undefined;
+            window.sign = undefined;
+            window.selfSign = undefined;
+        });
+    });
+</script>
+</html>

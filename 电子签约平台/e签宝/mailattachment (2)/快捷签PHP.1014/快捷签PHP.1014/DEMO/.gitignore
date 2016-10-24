@@ -1,0 +1,7 @@
+upload/*
+*.pdf
+inc.dat
+*.swp
+/example/sign/upload/*
+/example/sign_hash/upload/*
+/API/comm/inc.dat
