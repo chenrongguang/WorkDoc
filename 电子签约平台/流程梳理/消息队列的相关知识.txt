@@ -19,5 +19,5 @@ https://github.com/rocketmq/rocketmq-storm
 
 http://blog.csdn.net/column/details/learningrocketmq.html
 
-×îÖÕÑ¡ĞÍ:
+æœ€ç»ˆé€‰å‹:
 rocketmq
