@@ -1,0 +1,48 @@
+API所在机器：
+10.2.0.35
+
+web所在机器：
+10.2.0.34
+
+redis:
+10.1.0.13
+requirepass yqy123!456
+端口:6379
+
+mysql
+主：10.1.0.16
+从：10.1.0.14
+端口：3306
+用户名：gfa
+密码：QCLAAVoDhFsfbpPB
+用户名:yqy
+密码：65tK0FTjZMiWq903
+
+mongodb
+10.1.0.15
+端口27017
+admin库的账号：yqy,密码：yay@admin
+easysigncloud库的账号：yqysign,密码：sign@789
+easysigncloudlog库的账号：yqylog,密码：log@567
+
+
+activemq
+http://10.3.0.24:8161
+admin  yqy@admin123
+user   yqy@user456
+
+
+oss:华北2区
+Access Key ID: LTAIsQ4nUCzCyl2f	
+Access Key Secret: s1gaJQOytWOGpLyOtb0EpI1bCadpX8
+bucket name : yqyres
+'outerhost' => 'http://yqyres.oss-cn-beijing.aliyuncs.com', //保留给外部客户的访问地址
+'innerhost' => 'http://yqyres.oss-cn-beijing.aliyuncs.com',//给自己的访问地址，用于文件的下载等（内网速度快），在正式环境换成内网地址 http://yqianres.oss-cn-shanghai-internal.aliyuncs.com
+'endpoint' => 'http://oss-cn-beijing.aliyuncs.com'
+
+RAM用户登录链接 http://signin.aliyun.com/1999890087068082/login.htm
+登录名yqy_chenrongguang	
+密码DJl3qKXyDd9kxQnWanxVhuMf8K2RuE
+
+未完成的配置：
+国富安的相关配置
