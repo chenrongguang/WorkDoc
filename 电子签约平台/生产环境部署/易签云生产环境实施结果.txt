@@ -22,8 +22,8 @@ mongodb
 10.1.0.15
 端口27017
 admin库的账号：yqy,密码：yay@admin
-easysigncloud库的账号：yqysign,密码：sign@789
-easysigncloudlog库的账号：yqylog,密码：log@567
+新加两个库的用户密码都是：
+root yqy123root
 
 
 activemq
@@ -44,5 +44,11 @@ RAM用户登录链接 http://signin.aliyun.com/1999890087068082/login.htm
 登录名yqy_chenrongguang	
 密码DJl3qKXyDd9kxQnWanxVhuMf8K2RuE
 
-未完成的配置：
-国富安的相关配置
+国富安：
+wsdl：
+https://10.2.0.36:12443/WSMTECService?wsdl
+
+部署完成之后的地址：
+http://101.201.56.91/
+http://101.201.56.86/api?
+http://47.93.215.171:8161/
