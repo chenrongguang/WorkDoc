@@ -36,9 +36,12 @@ oss:华北2区
 Access Key ID: LTAIsQ4nUCzCyl2f	
 Access Key Secret: s1gaJQOytWOGpLyOtb0EpI1bCadpX8
 bucket name : yqyres
-'outerhost' => 'http://yqyres.oss-cn-beijing.aliyuncs.com', //保留给外部客户的访问地址
-'innerhost' => 'http://yqyres.oss-cn-beijing.aliyuncs.com',//给自己的访问地址，用于文件的下载等（内网速度快），在正式环境换成内网地址 http://yqianres.oss-cn-shanghai-internal.aliyuncs.com
-'endpoint' => 'http://oss-cn-beijing.aliyuncs.com'
+
+实际环境：
+        'outerhost' => 'http://yqyres.oss-cn-beijing.aliyuncs.com', //保留给外部客户的访问地址
+        'innerhost' => 'http://yqyres.vpc100-oss-cn-beijing.aliyuncs.com',//给自己的访问地址，用于文件的下载等（内网速度快），
+        'endpoint' => 'http://vpc100-oss-cn-beijing.aliyuncs.com', //专有网络这么访问 
+
 
 RAM用户登录链接 http://signin.aliyun.com/1999890087068082/login.htm
 登录名yqy_chenrongguang	
@@ -47,8 +50,15 @@ RAM用户登录链接 http://signin.aliyun.com/1999890087068082/login.htm
 国富安：
 wsdl：
 https://10.2.0.36:12443/WSMTECService?wsdl
+https://10.2.0.36:12443/soa/WSMTECService?wsdl
 
 部署完成之后的地址：
 http://101.201.56.91/
 http://101.201.56.86/api?
 http://47.93.215.171:8161/
+
+tomcat目录：
+/home/gfa/GFA/apache-tomcat-7.0.41/bin
+
+然后执行：
+进入bin目录执行./shutdown.sh 关闭服务 执行./start.sh启动服务
