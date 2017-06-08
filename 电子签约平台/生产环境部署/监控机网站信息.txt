@@ -1,0 +1,8 @@
+客户查看端
+http://101.201.56.91:3000   
+账号  guest   123456
+
+配置端
+zabbix
+http://101.201.56.91:1234/zabbix/
+账号  chenrongguang  q1w2e3r4t5
