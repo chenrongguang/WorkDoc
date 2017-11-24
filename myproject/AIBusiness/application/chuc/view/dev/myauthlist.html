@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>我的授权</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+
+	</head>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left">
+				<?php echo $html; ?>
+			</div>
+			<div class="wd_bg wd_bgtop">我的授权</div>
+			<div class="mation_right fl lm">
+				<a id="detail" href="javascript:;">
+					<p class="dian_p crea cur" style="font-family: 微软雅黑">去授权</p>
+				</a>
+				<div class="tScroll">
+					<table class="pp">
+						<tr class="mm">
+							<td class="bb bi">
+								<p style="width:340px;display:inline-block;">应用名称</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:300px;display:inline-block;">开发者</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:270px;display:inline-block;">授权时间</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:280px;display:inline-block;" class="border_right">操作</p>
+							</td>
+						</tr>
+						{empty name="list"}
+						<tr>
+							<td colspan="4">您还没有授权给任何第三方</td>
+						</tr>
+						{else /} {volist name="list" id="vo"}
+						<tr class="nn">
+							<td class="cc c_text ct" align="center" style="width:340px;" title="{$vo.app_name}">
+								<div class="nxd">{$vo.app_name}</div>
+							</td>
+							<td class="cc c_text" style="width:300px;" title="{$vo.user_name}">
+								<div class="nxd">{$vo.user_name}</div>
+							</td>
+							<td class="cc c_text" style="width:270px;" title="{$vo.create_time |date=" Y-m-d H:i ",###}">
+								<div class="nxd">{$vo.create_time |date="Y-m-d H:i",###}</div>
+							</td>
+							<td class="cc c_text" style="width:280px;">
+								<div class="nxd">
+									<a href="javascript:;" onclick="cancel('{$vo.auth_id}','{$vo.app_key}')">取消授权</a>
+								</div>
+							</td>
+						</tr>
+						{/volist} {/empty}
+					</table>
+				</div>
+			</div>
+		</div>
+		{include file="pub/footer" /}
+		<script src="/assets/js/libs/jquery-3.0.0.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<script>
+			$("#solo_k").css("background", "#eee");
+			$(".yong_h").css("background", "#0a61d4");
+
+			function cancel(auth_id, app_key) {
+				var app_key = app_key;
+				var auth_id = auth_id;
+				confirm("你确定要取消授权该应用吗", function() {
+					var path = "/home/dev/ajaxCancelApp";
+					$.ajax({
+						type: "post",
+						url: path,
+						data: JSON.stringify({ auth_id: auth_id, app_key: app_key }),
+						async: false,
+						success: function(data) {
+							if(data.result == 'SUCCESS') {
+								success(data.msg);
+								location.href = "/home/dev/myauthlist";
+							} else {
+								error(data.msg);
+							}
+						}
+					});
+				});
+			}
+		</script>
+		<script>
+			$('#detail').click(function() {
+				var business_status = "{$business_status??0}";
+				if(business_status == 2) {
+					location.href = "/home/dev/authlist";
+				} else {
+					alerts('资料审核通过之后才可以去授权！');
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

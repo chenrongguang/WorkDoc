@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>设置企业印章</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="/assets/css/style.min.css" rel="stylesheet" />
+	<link href="/assets/css/module.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<style>
+	.in_j {
+			margin-left: 13px;
+		}
+	
+		#lblreceiver{
+			display: block;	
+		}
+		#txt_reciver{
+			width:260px;
+			display: block;
+			margin:0px auto !important;
+		}
+		#tbent {
+			height: auto !important; 
+		}
+		.tr_cust{
+			clear: both;
+		}
+</style>
+<body style="background-color: #f4f4f4;">
+{include file="pub/header" /}
+<div class="mation_content">
+	<div id="j_left"><?php echo $html; ?></div>
+	<div class="wd_bg si_bg">设置企业印章</div>
+	<div style="padding-top:40px;" class="mation_right">
+		<div class="ju_zh">
+		<table class="ta_d pp">
+			<tr class="cmo">
+			<td class="td_s"><p style="width:260px;">功能操作</p></td>
+			<td class="td_s"><p style="width:280px">请输入印章编码</p></td>
+			<td class="td_s"><p class="border_right" style="width:256px">预览印章</p></td>
+			<!--<td style=" width:100px; display:inline-block; text-align: center;">印章名称</td>-->
+			</tr>
+			<!--<tr class="tr_cust" id="tbent"></tr>-->
+		</table>
+		<table  id="tbent">
+						
+					</table>
+		
+		</div>
+		<a><div id="next_btn" class="cop cur xib" onclick="next()">下一步</div></a>
+	</div>
+	<div id='div_info' style='display: none; width:100%; height:100%; z-index:999999; position: absolute; top: 0px; left:0px;'>
+		<p style='z-index:999999999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.8; cursor: wait; position: fixed;'>
+		</p>
+		<div style='z-index:9999999999; font-size:24px; position: fixed; padding:70px; padding-bottom:90px; margin: 0px; top:30%; left: 35%; text-align: center; color: rgb(0, 0, 0); border:2px solid rgb(170, 170, 170); border-radius:10px; background:#fff; cursor: wait;'>
+			<img class='fl' src='/assets/js/libs/loading.gif' style='display: inline-block; margin-top:20px;'>
+			<span class='fl' style='display: inline-block; vertical-align: middle; margin-top:25px;margin-left:10px;'>加载中,请等待......</span>
+		</div>
+	</div>
+</div>
+{include file="pub/footer" /}
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/js/layer/layer.js"></script>
+<script src="/assets/js/function.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/assets/js/login-v2.demo.min.js"></script>
+<script src="/assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script src="/assets/js/libs/common.js"></script>
+<script src="/assets/js/libs/jquery.form.min.js"></script>
+<script>
+	$("#solo_k1").css("background","#eee");
+	$(".yan_s").css("background", "#0a61d4");
+	var seallist = {$seal_list};
+	var selects = ''
+	/*<label id=\"lblSelect\" style=\"margin-top:5px;margin-left:10px;\" >*/
+	var s_top = "<label id=\"lblSelect\" style=\"margin-top:5px;margin-left:10px;\" ><select id=\"select\" onchange=\"a(this)\">"+
+				"<option value=\"\" style=\"display: none;\"></option>";
+	var s_foot = "</select><input id=\"_input\" type=\"text\" onblur=\"showseal(this)\" /></lable>";
+	$.each(seallist, function(i, value) {
+
+		selects += "<option value="+value['seal_code']+">"+value['name']+"</option>";
+	});
+	var all_select = s_top+selects+s_foot;
+	var tr_html='<tr class="tr_cust"><td class="tr_d" style="width:260px;"><div class="nxdd" style="width:260px;">' +
+			'<input class="in_j"  type="button" value="新增" onclick="addent(this)" />' +
+			'<input class="in_s" type="button" value="删除" onclick="delent(this)" /> ' +
+			'</div></td><td class="sel_inp" style="width:280px;"><div class="nxdd" style="width:280px;padding:0px 40px;">' +
+			all_select
+			+'<input type="hidden" class="hd_seal_code z_inp z_to" value="" />' +
+			'</div></td><td class="" style="width:5px;"><div></div></td><td class="td_img" style="width:256px;"><div class="nxdd" style="width:256px;"><img src="/assets/img/tihuan.png"/>' +
+			'</div></td></tr>';	
+	$(document).ready(function(){
+		$('#tbent').append(tr_html);
+	});
+
+	function delent(o){
+		if($('.tr_cust').length>1){
+			$(o).parent().parent().parent().remove();
+		}
+		else{
+			$('#div_info').css('display', "none");
+			error("必须至少有一个企业印章");
+		}
+	}
+	function addent(o){
+		var classnum= $("[class='in_j']").length;
+		if(classnum+1 >= 5){
+			$('#div_info').css('display', "none");
+			error("最多允许4个企业印章");
+		}else{
+			$('#tbent').append(tr_html);
+		}
+
+	}
+
+	function showseal(o){
+		var _this = $(o);
+		var seal_code=	$(o).val().trim();
+		if(seal_code==""){
+			return;
+		}
+		//获取印章信息
+		var path = "/home/dev/loadsealinfo";
+		$.ajax({
+			type : "post",
+			url : path,
+			data : JSON.stringify({seal_code:seal_code}),
+			async : false,
+			success : function(data){
+				if(data.result=='SUCCESS'){
+					_this.parent().parent().parent().next().next().children().children().first().attr('src',data.return_data.img_data);
+					//$(o).parent().next().next().children().first().attr('src',data.return_data.img_data);
+				}else{
+					$(o).parent().parent().next().next().children().children().first().attr('src','');
+					error(data.msg);
+				}
+			}
+		});
+	}
+
+	function next(){
+		//判断隐藏域的值:并获取存储到缓存中，多个需要拼接
+		var seal_data="";
+		var tmp_seal="";
+		var num = 0;
+		$('.hd_seal_code').each(function () {
+			tmp_seal=$(this).val();
+			//获取印章信息
+			var path = "/home/dev/loadsealinfo";
+			$.ajax({
+				type : "post",
+				url : path,
+				data : JSON.stringify({seal_code:tmp_seal}),
+				async : false,
+				beforeSend: function() {
+					parent.layer.load(1, {
+						shade: [0.1, '#fff'] //0.1透明度的白色背景
+					});
+				},
+				complete: function() {
+					parent.layer.closeAll();
+					$('#div_info').css('display', "block");
+					return false;
+				},
+				success : function(data){
+					if(data.result=='SUCCESS'){
+						$('#div_info').css('display', "none");
+						num += 0;
+					}else{
+						num += 1;
+					}
+				}
+			});
+
+			if(tmp_seal !=""){
+				if(seal_data==""){
+					seal_data +=tmp_seal;
+				}
+				else{
+					seal_data +="@|@" + tmp_seal;
+				}
+			}
+		});
+		if(num >0){
+			$('#div_info').css('display', "none");
+			error("存在无效的印章编码");
+			return;
+		}
+		if(seal_data==""){
+			$('#div_info').css('display', "none");
+			error("请至少输入一个有效的印章编码");
+			return;
+		}
+		localStorage.setItem("online_seal_code",seal_data);
+		location.href="/home/dev/onlinestep3"
+
+	}
+</script>
+<script>
+	$(document).on("keyup", "#_input", function(){
+		$(this).next().val($(this).val());
+	});
+	function a(o) {
+		var _this = $(o);
+		showseals(_this);
+		var txt = _this.find("option:selected").text();
+		var tval = _this.find("option:selected").val();
+		_this.next().val(txt);
+		_this.next().next().val(tval);
+		_this.val('');
+	}
+
+	function showseals(o){
+	
+		var _this = $(o);
+		var seal_code = _this.find("option:selected").val();
+		if(seal_code==""){
+			return;
+		}
+		//获取印章信息
+		var path = "/home/dev/loadsealinfo";
+		$.ajax({
+			type : "post",
+			url : path,
+			data : JSON.stringify({seal_code:seal_code}),
+			async : false,
+			success : function(data){
+				if(data.result=='SUCCESS'){
+					_this.parent().parent().parent().next().next().children().children().first().attr('src',data.return_data.img_data);
+				}else{
+					$('#div_info').css('display', "none");
+					error(data.msg);
+				}
+			}
+		});
+	}
+</script>
+</body>
+</html>

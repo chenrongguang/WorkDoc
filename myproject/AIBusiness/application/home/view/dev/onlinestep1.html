@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>在线试签署</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+	</head>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left"><?php echo $html; ?></div>
+			<div class="wd_bg wd_bgtop">在线试签署</div>
+			<div class="mation_right fl matio_z fft">
+				<label class="fl z_name mbbm">输入合同模板编码：</label>
+			<label id="lblSelect">
+			<select id="select" onchange="a()">
+				<option value="" style="display: none;"></option>
+				{volist name="tmpl_list" id="vo"}
+				<option value="{$vo.tmpl_code}">{$vo.tmpl_name}</option>
+				{/volist}
+			</select>
+			<input id="_input" type="text"  />
+			</label>
+				<input id="stmpl" class="stmpl" type="button" value="查看合同" />
+				<!--<input class="z_inp wid_20 fl mar" type="text" style="width:280px" id="tmpl_code"  name="tmpl_code" placeholder="合同模板编码"  onblur="showtmpl()"/>-->
+				<input class="z_inp wid_20 fl mar" type="hidden" style="width:280px" id="tmpl_code" value="" name="tmpl_code" placeholder="合同模板编码" />
+				<label class="fl z_name" style="color:red" id="lbinfo"></label>
+				<br/>
+				<div id='div_info' style='display: none; width:100%; height:100%; z-index:999999; position: absolute; top: 0px; left:0px;'>
+					<p style='z-index:999999999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.8; cursor: wait; position: fixed;'>
+					</p>
+					<div style='z-index:9999999999; font-size:24px; position: fixed; padding:70px; padding-bottom:90px; margin: 0px; top:30%; left: 35%; text-align: center; color: rgb(0, 0, 0); border:2px solid rgb(170, 170, 170); border-radius:10px; background:#fff; cursor: wait;'>
+						<img class='fl' src='/assets/js/libs/loading.gif' style='display: inline-block; margin-top:20px;'>
+						<span class='fl' style='display: inline-block; vertical-align: middle; margin-top:25px;margin-left:10px;'>加载中,请等待......</span>
+					</div>
+				</div>
+				<iframe src="" style="width:100%;height: 400px;position:relative;" id="if_tmpl">
+				
+				
+			</iframe>
+				<input type="hidden" id="hd_tmpl_url" value="">
+				<br/>
+				<a>
+					<div id="next_btn" class="cop cur zii" onclick="next()">下一步</div>
+				</a>
+			</div>
+		</div>
+		{include file="pub/footer" /}
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+		<script>
+			$(function() {
+				$("#_input").keyup(function() {
+					$("#tmpl_code").val($(this).val());
+				})
+
+			})
+
+			function a() {
+				$("#_input").val($("#select option:selected").text());
+				$("#tmpl_code").val($("#select option:selected").val());
+				$("#select").val('');
+			}
+		</script>
+		<script>
+			$("#solo_k1").css("background", "#eee");
+			$(".yan_s").css("background", "#0a61d4");
+			var check_flag = false;
+			$(document).ready(function() {
+				clearset();
+			});
+
+			$('#stmpl').click(function() {
+				var show = showtmpl();
+				if(!show) {
+					error("请先输入合同模板编码");
+					return false;
+				}
+			})
+			//初次加载该页面试，清除数据
+			function clearset() {
+				localStorage.removeItem("online_tmpl_code");
+				localStorage.removeItem("online_tmpl_url");
+				localStorage.removeItem("online_seal_code");
+
+				localStorage.removeItem("online_person_userid");
+				localStorage.removeItem("online_person_shape");
+				localStorage.removeItem("online_person_width");
+				localStorage.removeItem("online_person_height");
+			}
+
+			function next() {
+
+				var show = showtmpl();
+				if(show) {
+					//先调用生成临时文件
+					var tmpl_code = $('#tmpl_code').val();
+					var path = "/home/pub/savetmpl";
+					var check_flag = false;
+					$.ajax({
+						type: "post",
+						url: path,
+						data: JSON.stringify({ tmpl_code: tmpl_code,"tmpl_url":"" }),
+						async: false,
+						complete: function() {
+							$('#div_info').css('display', "block");
+							return false;
+						},
+						success: function(data) {
+
+							if(data.result == 'SUCCESS') {
+								$('#div_info').css('display', "none");
+								localStorage.setItem("localfile", "../../../tmpfile/" + data.return_data.filename);
+								localStorage.setItem("online_tmpl_code", $('#tmpl_code').val());
+								localStorage.setItem("online_tmpl_url", $('#hd_tmpl_url').val().replace("http://", "https://"));
+								location.href = "/home/dev/onlinestep2";
+							} else {
+								//$('#div_info').css('display', "none");
+								layer.close(index);
+								error("不存在该合同模板，请重试");
+								return;
+							}
+						}
+					});
+				} else {
+					error("请先输入合同模板编码");
+					return;
+				}
+			}
+
+			function showtmpl() {
+				var tmpl_code = $('#tmpl_code').val();
+				if(tmpl_code == "") {
+					//$('#lbinfo').text('请输入合同模板编码');
+					return false;
+				}
+				//获取合同模板信息
+				var path = "/home/dev/loadtmplinfo";
+				var check_flag = false;
+				$.ajax({
+					type: "post",
+					url: path,
+					data: JSON.stringify({ tmpl_code: tmpl_code }),
+					async: false,
+					success: function(data) {
+						if(data.result == 'SUCCESS') {
+							$('#lbinfo').text("");
+							check_flag = true;
+							$('#if_tmpl').attr('src', data.return_data.tmpl_url.replace("http://", "https://"));
+							$('#hd_tmpl_url').val(data.return_data.tmpl_url.replace("http://", "https://"));
+						} else {
+							$('#lbinfo').text(data.msg);
+							check_flag = false;
+						}
+					}
+				});
+				return check_flag;
+			}
+		</script>
+	</body>
+
+</html>

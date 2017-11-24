@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>设置个人签名</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="/assets/css/style.min.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<body style="background-color: #f4f4f4;">
+{include file="pub/header" /}
+
+	<div class="mation_content">
+		<div id="j_left"><?php echo $html; ?></div>
+		<div class="wd_bg si_bg">设置个人签名</div>
+		<div style="padding-top:40px;" class="mation_right fl">
+			<form class="yin_f" name="form"  method="post">
+				<div class="rad_box">
+					<span style="width: 90px;display: inline-block;" class="c_tom">个人签名：</span>
+					<input class="z_inp z_to" type="text" value="测试者" readonly />
+				</div>
+				<div class="rad_box">
+					<span style="width: 90px;display: inline-block;" class="c_tom">图片形状：</span>
+					<input name="co" type="radio" value="3" checked="checked" />
+					<span class="w_h">长方形</span>
+				</div>
+				<div class="rad_box">
+				<!--	<span style="width: 90px;display: inline-block;" class="c_tom">长度：</span>-->
+					<input class="z_inp z_to" type="hidden" value="200" id="image_width" />
+				</div>
+				<div class="rad_box">
+				<!--	<span style="width: 90px;display: inline-block;" class="c_tom">宽度：</span>-->
+					<input class="z_inp z_to" type="hidden" value="100" id="image_height" />
+				</div>
+				
+			</form>
+			<!--
+			<a ><div id="skip_btn" class="cop cur sure str" onclick="skip()">跳过该步</div></a>
+			-->
+			<a ><div id="next_btn" class="cop cur sure str" onclick="next()" style="margin-top:60px;">下一步</div></a>
+		</div>
+	</div>
+{include file="pub/footer" /}
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/js/layer/layer.js"></script>
+<script src="/assets/js/function.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/assets/js/login-v2.demo.min.js"></script>
+<script src="/assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script src="/assets/js/libs/common.js"></script>
+<script src="/assets/js/libs/jquery.form.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#tbent').append(tr_html);
+	});
+	$("#solo_k1").css("background","#eee");
+	$(".yan_s").css("background", "#0a61d4");
+	function skip(){
+		//清除
+		localStorage.removeItem("online_person_userid");
+		localStorage.removeItem("online_person_shape");
+		localStorage.removeItem("online_person_width");
+		localStorage.removeItem("online_person_height");
+
+		location.href="/home/dev/onlinestep4"
+	}
+
+	function next(){
+		//$('#div_info').css('display', "block");
+		//return false;
+	/*	var i_width =$("#image_width").val();
+		var i_height =$("#image_height").val();*/
+		var i_width =200;
+		var i_height =200;
+		if(!(/^\+?[1-9][0-9]*$/.test(i_width))){
+			alerts("签名宽度为1-200的整数");
+			return false;
+		}
+		if(!(/^\+?[1-9][0-9]*$/.test(i_height))){
+			alerts("签名高度为1-200的整数");
+			return false;
+		}
+		if(i_width>200){
+			alerts("签名宽度为1-200的整数");
+			return false;
+		}
+		if(i_height>200){
+			alerts("签名高度为1-200的整数");
+			return false;
+		}
+
+		localStorage.setItem("online_person_userid",-1);//写死的
+		localStorage.setItem("online_person_shape",3);
+		localStorage.setItem("online_person_width",i_width);
+		localStorage.setItem("online_person_height",i_height);
+		//
+		//localStorage.setItem("testfile","../../../tmpfile/aaaa.pdf");
+		//var file=localStorage.getItem("online_tmpl_url");
+		//location.href="/home/dev/onlinestep4?file=" + file;
+		//$('#div_info').css('display', "none");
+		location.href="/home/dev/onlinestep4?";
+	}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>设置企业印章</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="/assets/css/style.min.css" rel="stylesheet" />
+	<link href="/assets/css/module.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<body>
+{include file="pub/header" /}
+<div class="mation_content">
+	<div class="wd_bg wd_bgtop si_bg">设置企业印章</div>
+	<div style="padding:40px 100px;" class="mation_right">
+		<div class="ju_zh">
+			<table class="ta_d pp">
+				<tr class="cmo">
+				<td class="td_s"><p style="width:398px;">请选择印章编码</p></td>
+				<td class="td_s"><p style="width:398px;"class="border_right">预览印章</p></td>
+				</tr>
+				<tr class="tr_cust" id="tbent"></tr>
+			</table>
+		</div>
+	</div>
+	<a><div id="next_btn" class="cop cur xib" onclick="next()">下一步</div></a>
+	<div id='div_info' style='display: none; width:100%; height:100%; z-index:999999; position: absolute; top: 0px; left:0px;'>
+		<p style='z-index:999999999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.8; cursor: wait; position: fixed;'>
+		</p>
+		<div style='z-index:9999999999; font-size:24px; position: fixed; padding:70px; padding-bottom:90px; margin: 0px; top:30%; left: 35%; text-align: center; color: rgb(0, 0, 0); border:2px solid rgb(170, 170, 170); border-radius:10px; background:#fff; cursor: wait;'>
+			<img class='fl' src='/assets/js/libs/loading.gif' style='display: inline-block; margin-top:20px;'>
+			<span class='fl' style='display: inline-block; vertical-align: middle; margin-top:25px;margin-left:10px;'>加载中,请等待......</span>
+		</div>
+	</div>
+</div>
+{include file="pub/footer" /}
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/js/layer/layer.js"></script>
+<script src="/assets/js/function.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/assets/js/login-v2.demo.min.js"></script>
+<script src="/assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script src="/assets/js/libs/common.js"></script>
+<script src="/assets/js/libs/jquery.form.min.js"></script>
+<script>
+	var seallist = {$seal_list};
+	var selects = ''
+	/*<label id=\"lblSelect\" style=\"margin-top:5px;margin-left:10px;\" >*/
+	var s_top = "<label id=\"lblSelect\" style=\"margin-top:5px;margin-left:10px;\" ><select id=\"select\" onchange=\"showinfo(this)\">"+
+			"<option value=\"\" style=\"display: none;\">请选择签章</option>";
+	var s_foot = "</select></lable>";
+	$.each(seallist, function(i, value) {
+		selects += "<option value="+value['seal_code']+">"+value['name']+"</option>";
+	});
+	var all_select = s_top+selects+s_foot;
+	var tr_html='<td class="sel_inp fl" style="width:398px;  padding-left: 120px;">' +
+			all_select
+			+'<input type="hidden" class="hd_seal_code z_inp z_to" value="" />' +
+			'</td><td style="width:398px;" class="td_img fl"><img src="/assets/img/tihuan.png"/>' +
+			'</td>';	
+	$(document).ready(function(){
+		$('#tbent').append(tr_html);
+	});
+
+	function next(){
+		//判断隐藏域的值:并获取存储到缓存中，多个需要拼接
+		var seal_code= $('.hd_seal_code').val();
+		if(seal_code==""){
+			alerts("请选择一个签章");
+			return;
+		}
+
+		localStorage.setItem("online_seal_code",seal_code);
+		location.href="/home/bootsign/onlinestep3"
+	}
+
+
+	function showinfo(o) {
+		var _this = $(o);
+		showseals(_this);
+		//var txt = _this.find("option:selected").text();
+		//var tval = _this.find("option:selected").val();
+		//_this.next().val(txt);
+		//_this.next().next().val(tval);
+		//_this.val('');
+	}
+
+	function showseals(o){
+		var _this = $(o);
+		var seal_code = _this.find("option:selected").val();
+		$('.hd_seal_code').val(seal_code);
+		if(seal_code==""){
+			return;
+		}
+
+		//获取印章信息
+		var path = "/home/dev/loadsealinfo";
+		$.ajax({
+			type : "post",
+			url : path,
+			data : JSON.stringify({seal_code:seal_code}),
+			async : false,
+			success : function(data){
+				if(data.result=='SUCCESS'){
+					_this.parent().parent().next().children().first().attr('src',data.return_data.img_data);
+				}else{
+					error(data.msg);
+				}
+			}
+		});
+	}
+</script>
+</body>
+</html>

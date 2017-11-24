@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>对账单签署</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+		<link href="/assets/css/module.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+	</head>
+	<style>
+		::-webkit-input-placeholder {
+			/* WebKit browsers */
+			color: #fff;
+			padding-left: 20px;
+		}
+		
+		::-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: #fff;
+		}
+		
+		::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: #fff;
+		}
+		
+		::-ms-input-placeholder {
+			/* Internet Explorer 10+ */
+			color: #fff;
+		}
+		
+		.xia_zi {
+			border: 1px #c3c3c3 solid;
+		}
+		
+		#selectid {
+			width: 120px;
+			height: 24px;
+			margin-left: 10px;
+			background: #e53f2c;
+			border: none !important;
+			border-radius: 20px;
+			color: #fff;
+			padding-left: 5px;
+		}
+		
+		#lblSelect::after {
+			width: 19px;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			background: #e53f2c;
+			border: none;
+		}
+		
+		#lblSelect {
+			width: 130px;
+			margin-top: 20px;
+			margin-left: 10px;
+		}
+		
+		.qian_shua a {
+			margin: auto !important;
+			color: #fff;
+		}
+		
+		.qian_shua a:hover {
+			color: #fff;
+		}
+		
+		margin: auto !important;
+		}
+		.vasn {
+			color: #fff;
+		}
+		.so_suo {
+			padding: 20px 45px;
+		}
+		.tScroll{
+			margin-bottom: 40px;
+		}
+	</style>
+
+	<body>
+		<div id='div_info' style='display: none; width:100%; height:100%; z-index:999999; position: absolute; top: 0px; left:0px;'>
+			<p style='z-index:999999999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.8; cursor: wait; position: fixed;'>
+			</p>
+			<div style='z-index:9999999999; font-size:24px; position: fixed; padding:0px 50px;padding-bottom:60px; margin: 0px; top:30%; left: 35%; text-align: center; color: rgb(0, 0, 0); border:2px solid rgb(170, 170, 170); border-radius:10px; background:#fff; cursor: wait;'>
+				<p style='position: relative;display: inline-block; vertical-align: middle;width: 100%; text-align: center;'>
+					
+					<p style="position:absolute; top:80px; left:150px;" >加载中,请等待......</p>
+					<img class='fl' src='/assets/img/aimg/loading1.gif' style='display: inline-block;'>
+				</p>
+				
+			</div>
+		</div>
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left">
+				<?php echo $html; ?>
+			</div>
+			<div class="wd_bg wd_bgtop">对账单签署</div>
+			<div class="mation_right fl lm">
+				<div class="bill">
+					<div class="fl bill_all bill_1">
+						<div class="bill_img">
+							<img id="seal_img" src="/assets/img/aimg/tu_b.png" />
+						</div>
+						<label id="lblSelect">
+							<select  id="selectid">
+								{volist name="seal_list" id="vo"}
+									<option value="{$vo.seal_code}" title="{$vo.name}">{$vo.name}</option>
+								{/volist}
+							</select>
+						</label>
+					</div>
+					<i class="fl bill_2"></i>
+					<div class="fl bill_all bill_3">
+						<div class="bill_img">
+							<img class="dui_1" src="/assets/img/aimg/dui_1.png" />
+						</div>
+
+						<div class="bill_input" id="upload1"></div>
+						<p class="j_name j_me"></p>
+					</div>
+					<i class="fl bill_4"></i>
+					<div class="fl bill_all bill_5">
+						<div class="bill_img">
+							<img class="dui_2" src="/assets/img/aimg/dui_2.png" />
+						</div>
+						<div class="bill_input" id="upload2" onclick="ajaxsign()" style="cursor: pointer;">开始签署</div>
+					</div>
+					<i class="fl  bill_6"></i>
+					<div class="fl bill_all bill_7">
+						<div class="bill_img">
+							<img class="dui_3" src="/assets/img/aimg/dui_3.png" />
+						</div>
+						<!-- id="showresult"-->
+						<div class="bill_input" id="upload3">
+							<a href='javascript:void(0)' class='a_result'  style="color: #fff;" >下载合同</a>
+						</div>
+						<div style="text-align:right;width:100%;font-size: 12px; font-family: '微软雅黑'; cursor: pointer; margin-top: 10px; padding: 0px 8px;">
+							<input class="bill_fz fl" readonly="readonly" style="background: #fff;border:none;width:65px; display: none;" title="" />
+							<span class="bill_span fr" style="display: none;">复制下载地址</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="raw_name" name="raw_name" value="" />
+			<input type="hidden" id="contract_name" name="contract_name" value="" />
+
+			<p style="clear: both;"></p>
+			<!---- ================== 时间查询表单 ================== ---->
+			<div class="so_suo">
+				<div class="fl ch_j ma_top">创建时间：开始~结束</div>
+				<div class="rell ovey fl ma_top">
+					<input class="_input" placeholder="请选择时间" readonly="readonly" type="text" value="{$start_time}" id="start_time" name="start_time" onClick="start('{$start_time}','{$end_time}')" />
+				</div>
+				<div class="fl h_xian ma_top">-</div>
+				<div class="rell ovey fl ma_top">
+					<input class="_input" placeholder="请选择时间" readonly="readonly" type="text" value="{$end_time}" id="end_time" name="end_time" onClick="end('{$start_time}','{$end_time}')" />
+				</div>
+				<tr class="tr_cust" id="tbent"></tr>
+				<button class="b_utton ma_top" onclick="_search()">查询</button>
+				<span style="margin-left: 50px;font-family: inherit;color: darkred"></span>
+
+				<div id="data_list">
+					<div class="tScroll">
+						<table class="pp">
+							<tr class="mm">
+								<td class="bb">
+									<p style="width:280px;">签署时间</p>
+								</td>
+								<td class="bb">
+									<p style="width:280px;">对账单名称</p>
+								</td>
+								<td class="bb">
+									<p style="width:240px;">复制下载地址</p>
+								</td>
+								<td class="bb">
+									<p style="width:300px;" class="border_right">操作</p>
+								</td>
+							</tr>
+							<tr class="nn" id="x_jiazai">
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		{include file="pub/footer" /}
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<script src="/assets/js/jedate/jedate.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+		<script src="/assets/js/libs/uploadH/jquery.Huploadify.js"></script>
+		<script src="/assets/js/libs/jquery.blockUI.js"></script>
+		<script src="/admin/lib/layer/2.4/layer.dev.js"></script>
+		<script>
+			function start(min,max){
+				jeDate({
+					dateCell: '#start_time',
+					isTime:true,
+					format:'YYYY-MM-DD hh:mm:ss',
+					//minDate: min,
+					//maxDate: max,
+				});
+			}
+
+			function end(min,max){
+				jeDate({
+					dateCell: '#end_time',
+					isTime:true,
+					format:'YYYY-MM-DD hh:mm:ss',
+					//minDate: min,
+					//maxDate: max,
+				});
+			}
+
+		</script>
+
+		<script type="text/javascript">
+			function copyUrl2(obj) {
+				var copys = obj.siblings();
+				copys.select(); // 选择对象 
+				document.execCommand("Copy"); // 执行浏览器复制命令
+				success('复制成功')
+				//alerts();
+				//error("失败");
+			}
+			$(".yan_s").css("background", "#0a61d4");
+			$("#solo_k2").css("background", "#eee");
+			$(document).ready(function() {
+				init_upload();
+			});
+
+			function init_upload() {
+				$('#upload1').Huploadify({
+					'auto': true,
+					'uploader': "/home/index/uploadimgH?type=accountbook_pdf_data",
+					'buttonText': "上传pdf文件",
+					'width': '110px',
+					'multi': false,
+					'showUploadedPercent': false,
+					'fileTypeExts': '*.pdf',
+					'fileSizeLimit': "12288", //正式限制
+					'removeCompleted': true, // 上传成功后移除进度条
+					'removeTimeout': 3, // The delay in seconds before removing a queue item if removeCompleted is set to true
+					'requeueErrors': false,
+					'onInit': function() {
+						$(".uploadify-queue").hide();
+					},
+					'onUploadStart': function() {
+						//$('.j_name').text("上传中.....");
+						$.blockUI({ message: '<h3 class="h_3" style="z-index:999999999;"><img src="/assets/js/libs/loading.gif" /> 正在上传中,请不要离开该页面....... </h3>' });
+					},
+					'onUploadSuccess': function(file, data, response) {
+						$.unblockUI();
+						var jsonData = eval('(' + data + ')');
+						//如果上传成功
+						if(jsonData['error'] == 0) {
+							var pdf_name = getStr(jsonData['raw_name'], '.pdf');
+							$('#contract_name').val(pdf_name);
+							layer.prompt({ title: '对账单名称，并确认', formType: 3, value: pdf_name }, function(text, index) {
+								$('#contract_name').val(text);
+								$('#contract_name').val(text);
+								$('.j_name').text(text+'.pdf');
+								$('.j_name').attr('title',text+'.pdf');
+								layer.close(index);
+							});
+							//显示预览的图片，并且负责给隐藏域，点保存的时候传递到后台
+							$('#raw_name').val(jsonData['raw_name']);
+							$('.j_name').text(jsonData['raw_name']);
+							$('.j_name').attr('title', jsonData['raw_name']);
+							$('#upload2').addClass("bill_bg");
+							$('.dui_2').attr('src', '/assets/img/aimg/dui_02.png');
+						} else {
+							error("上传失败，请重试...");
+						}
+					},
+					/*'onUploadComplete':function(){
+					 $('.j_name').text("上传完成");
+					 },*/
+					'onUploadError': function(file, errorCode, errorMsg, errorString) {
+						$('.j_name').text("上传失败，请重试...");
+						$('.j_name').attr('title', '上传失败，请重试...');
+						$.unblockUI();
+					}
+				});
+			}
+
+			function ajaxsign() {
+				var seal_code = $("#selectid").find("option:selected").val();
+				var contract_name = $("#contract_name").val();
+				if(seal_code == "") {
+					alerts("请选择印章编码");
+					return;
+				}
+				if($("#raw_name").val() == "") {
+					alerts("请上传pdf文件");
+					return;
+				}
+				if(contract_name == "") {
+					alerts("请设置对账单名称");
+					return;
+				}
+				//<img src="/assets/js/libs/loading1.gif" />
+				$.blockUI({ message: '<h3 class="h_3" style="z-index:999999999;"><img src="/assets/js/libs/loading.gif" /> 正在处理中,请不要离开该页面....... </h3>' });
+				
+				//校验手机号码是否已经存在：
+				var path = "/home/demo/ajax_accountbookDo";
+				$.ajax({
+					type: "post",
+					url: path,
+					data: JSON.stringify({ seal_code: seal_code, contract_name: contract_name }),
+					async: true,
+					timeout: 10000000,
+					success: function(data) {
+						if(data.result == 'SUCCESS') {
+							/* $('.a_result').css('display', "block");*/
+
+							$(".bill_span").click(function() {
+								copyUrl2($(this))
+							})
+							$(".bill_fz").attr('value', data.return_data.url);
+							$('.a_result').attr('href', data.return_data.url);
+							$('.a_result').attr('target','_blank');
+							$('#upload3').addClass("bill_bg");
+							$(".bill_span").css("color", "#e53f2c");
+							$(".bill_span").css("display", "block");
+							$('.bill_fz').css("display", "block");
+
+							$('.dui_3').attr('src', '/assets/img/aimg/dui_03.png');
+							$.unblockUI();
+						} else {
+							if(data.msg) {
+								error(data.msg);
+							} else {
+								error("签署失败，请重试");
+							}
+							$.unblockUI();
+						}
+					}
+				});
+			}
+			function getStr(string, str) {
+				var str_before = string.split(str)[0];
+				var str_after = string.split(str)[1];
+				return str_before;
+			}
+		</script>
+	</body>
+
+</html>
+<script>
+	$(document).ready(function() {
+		var seal_code = $("#selectid").find("option:selected").val();
+		showseals(seal_code);
+	});
+
+	$("#selectid").change(function() {
+		var seal_code = $(this).val();
+		showseals(seal_code);
+	})
+
+	function showseals(seal_code) {
+		//获取印章信息
+		var path = "/home/dev/loadsealinfo";
+		$.ajax({
+			type: "post",
+			url: path,
+			data: JSON.stringify({ seal_code: seal_code }),
+			async: false,
+			beforeSend: function() {
+				parent.layer.load(1, {
+					shade: [0.1, '#fff'] //0.1透明度的白色背景
+				});
+			},
+			complete: function() {
+				parent.layer.closeAll();
+			},
+			success: function(data) {
+				if(data.result == 'SUCCESS') {
+					$('#seal_img').attr('src', data.return_data.img_data);
+					$('#upload1').addClass("bill_bg");
+					$('.dui_1').attr('src', '/assets/img/aimg/dui_01.png');
+
+				} else {
+					error(data.msg);
+				}
+			}
+		});
+	}
+</script>
+<!--对账单查询-->
+<script>
+	$(document).ready(function() {
+		var page_size = '{$page_size}';
+		var page = '{$page}';
+		var start_time = "{$start_time}";
+		var end_time = "{$end_time}";
+		var query = "{$query}";
+
+		var paras = "";
+		if(start_time) {
+			$("#start_time").val(start_time);
+			paras += "&start_time=" + start_time;
+		}
+		if(end_time) {
+			$("#end_time").val(end_time);
+			paras += "&end_time=" + end_time;
+		}
+		if(page_size) {
+			paras += "&page_size=" + page_size;
+		}
+		if(page) {
+			paras += "&page=" + page;
+		}
+		var query = "{:input('query')}"
+		if(query) {
+			get_list(paras);
+		}
+	})
+
+	function _search() {
+		var page_size = '{$page_size}';
+		var page = 1;
+		//获取参数：
+		var paras = "";
+		var start_time = $("#start_time").val();
+		if(start_time == "") {
+			alerts("必须输入开始时间");
+			return;
+		} else {
+			paras += "&start_time=" + start_time;
+		}
+		var end_time = $("#end_time").val();
+		if(end_time == "") {
+			alerts("必须输入结束时间");
+			return;
+		} else {
+			paras += "&end_time=" + end_time;
+		}
+		if(page_size) {
+			paras += "&page_size=" + page_size;
+		}
+		if(page) {
+			paras += "&page=" + page;
+		}
+		get_list(paras)
+	}
+	//请求数据
+	function get_list(paras) {
+		var url = "/home/demo/accountbook_ajax?query=true" + paras; //默认列表url
+		$.ajax({
+			url: url,
+			type: "GET",
+			async: true, //此处要求是异步的。
+			dataType: "json",
+			beforeSend: function() {
+				$('#x_jiazai').html("加载中,请等待......");
+			},
+			/*complete: function() {
+			 $('#x_jiazai').css("display", "none");
+			 },*/
+			success: page_callback,
+			error: function(e) {
+				showError(e.responseText);
+			}
+		});
+
+		function page_callback(res) {
+			$('#data_list').html(res);
+		}
+	}
+</script>

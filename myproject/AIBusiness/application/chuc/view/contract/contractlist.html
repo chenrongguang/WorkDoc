@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>合同查询</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<link href="/assets/css/pagination.css" rel="stylesheet">
+		<script src="/assets/js/jedate/jedate.js"></script>
+		<!-- ================== END BASE CSS STYLE ================== -->
+
+	</head>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left"><?php echo $html; ?></div>
+			<div class="mation_right fl lm">
+				<p class="crea cur query" onclick="_search()">合同查询</p>
+				<div class="ove bor_om">
+
+					<label class="fl z_name c_x">签约人名称：</label>
+
+					<div class="rell ove fl k_s">
+						<label class="fl z_name s_j">开始时间：</label>
+						<input class="z_inp wid_20 fl b_d" type="text" value="{$start_time}" id="start_time" name="start_time" placeholder="开始时间" />
+						<img onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" class="rili cur" src="/assets/img/img11.png" />
+					</div>
+					<div class="rell ove fl k_s">
+						<label class="fl z_name s_j">结束时间：</label>
+						<input class="z_inp wid_20 fl b_d" type="text" value="{$end_time}" id="end_time" name="end_time" placeholder="结束时间" />
+						<img onClick="jeDate({dateCell:'#end_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" class="rili cur" src="/assets/img/img11.png" />
+					</div>
+
+					<button class="z_inp hove" onclick="_search()">查询</button>
+
+				</div>
+				<div class="tScroll">
+					<table class="pp">
+						<tr class="mm">
+							<td class="bb"><p style="width:20px;"></p></td>
+							<td class="bb"><p style="width:100px;">合同id </p></td>
+							<td class="bb"><p style="width:100px;">产品名称</p></td>
+							<td class="bb"><p style="width:100px;">产品编码</p></td>
+							<td class="bb"><p style="width:200px;">查询码</p></td>
+							<td class="bb"><p style="width:150px;">创建时间 </p></td>
+							<td class="bb"><p style="width:140px;">状态</p> </td>
+							<td class="bb"><p style="width:140px;">公证</p></td>
+							<td class="bb"><p style="width:300px;">操作</p> </td>
+						</tr>
+						{volist name="list" id="vo"}
+						<tr class="nn">
+							<td class="cc c_text ct" align="center" style="width:20px; ">
+								<div class="nxd">
+									<a class="noss" id="h{$vo.contract_code}" href="javascript:openHiden('{$vo.contract_code}')" style="text-decoration: none;display:inline-block;">+</a>
+								</div>
+							</td>
+							<td class="cc c_text"  style="width:100px;">
+								<div class="nxd">{$vo.contract_id}</div>
+							</td>
+
+							<td class="cc c_text"  style="width:100px;">
+								<div class="nxd">{$vo.fname}</div>
+							</td>
+
+							<td class="cc c_text"  style="width:100px;">
+								<div class="nxd">{$vo.subject}</div>
+							</td>
+
+							<td class="cc c_text"  style="width:200px;">
+								<div class="nxd">{$vo.query_code}</div>
+							</td>
+							<td class="cc c_text" style="width:200px;">
+								<div class="nxd">{$vo.create_time|date="Y-m-d H:i:s",###}</div>
+							</td>
+							<td class="cc c_text" style="width:100px;">
+								<div class="nxd">{eq name="vo.status" value="1"}签署中{/eq}{eq name="vo.status" value="2"}完成{/eq}</div>
+							</td>
+							<td class="cc c_text" style="width:100px;">
+								<div class="nxd">{eq name="vo.judge_status" value="0"}未公证{/eq}{eq name="vo.judge_status" value="1"}已公证{/eq}</div>
+							</td>
+							<!--
+						<td class="cc c_text"><div style="width:200px;" class="nxd"><p class="xv"><span class="lk"><a href="{$vo.contract_url}" target="_blank">查看合同</a></span><span class="lk"><a href="{$vo.attatchment_url}" target="_blank">查看附件</a></span></p></td>
+						-->
+							<td class="cc c_text">
+								<div style="width:300px;" class="nxd">
+									<p class="xv">
+										{if condition=" $vo['subject'] neq 1003 "}
+											<span class="lk">
+												<a href="/home/fileinfo/get?code={$vo.contract_code}&content=body&handle=redirect" target="_blank" >合同预览</a>
+											</span>
+										{/if}
+										{eq name="vo.status" value="2"}
+											<span class="lk"><a href="/home/fileinfo/get?code={$vo.contract_code}&content=attachment&handle=redirect"  target="_blank">附件预览</a></span>
+										{/eq}
+										<!--<span class="lk"><a href="/home/fileinfo/get?code={$vo.contract_code}&content=body&handle=download" target="_blank" >合同下载</a></span>
+										<span class="lk"><a href="/home/fileinfo/get?code={$vo.contract_code}&content=attachment&handle=download"  target="_blank">附件下载</a></span>-->
+										{eq name="vo.status" value="2"}
+											<span class="lk"><a href="/home/fileinfo/get?code={$vo.contract_code}&content=package&handle=download"  target="_blank">打包下载</a></span>
+										{/eq}
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr style="display:none; height:80px;" id="Item{$vo.contract_code}" class="nn">
+							<td colspan="18" class="cc c_text" style="padding: 10px;" valign="top"></td>
+						</tr>
+
+						{/volist}
+					</table>
+				</div>
+				<div id="page">
+					{$page}
+				</div>
+
+			</div>
+		</div>
+		{include file="pub/footer" /}
+
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+		<script src="/assets/js/libs/jquery.blockUI.js"></script>
+
+		<script>
+			var OpenId = '';
+			$(document).ready(function() {
+
+				var status = $("#hd_contract_status").val();
+				$("#ddstatus").val(status);
+				var handletype = $("#hd_handletype").val();
+				$("#ddhandletype").val(handletype);
+			});
+			//隐藏或者显示详细信息
+			function openHiden(id) {
+				var p = $('#Item' + id).toggle();
+				//alert(p.attr('style'))
+				//显示，隐藏的tr
+				if(p.attr('style').toLowerCase().indexOf('none') > -1) {
+					//隐藏时将 ‘-’号变成加号
+					$("#h" + id).text('+');
+					return;
+				}
+				//关闭以前打开的行
+				if(OpenId != '' && OpenId != id) {
+					$('#Item' + OpenId).hide();
+					$("#h" + OpenId).text('+');
+				}
+				OpenId = id;
+				//打开时将 ‘-’号变成加号
+				//        $("#h" + id).text('--');
+				$("#h" + id).text('-');
+				var href = '/home/stat/contractdetaillist?contract_code=' + id;
+				$.ajax({
+					type: 'GET',
+					cache: false,
+					url: href,
+					//beforeSend: page_synclayer,
+					success: page_callback,
+					error: function(e) {
+						showError(e.responseText);
+					}
+				});
+				function page_callback(res, status) {
+					$('td', p).html(res);
+				}
+			}
+
+			function _search() {
+				//获取参数：
+				var paras = "";
+				var user_name = $("#user_name").val();
+				if(user_name != "") {
+					//paras += "&user_name=" + user_name;
+				}
+				var mobile = $("#mobile").val();
+				if(mobile != "") {
+					paras += "&mobile=" + mobile;
+				}
+				var identity_no = $("#identity_no").val();
+				if(identity_no != "") {
+					paras += "&identity_no=" + identity_no;
+				}
+
+				var query_code = $("#query_code").val();
+				if(query_code != "") {
+					paras += "&query_code=" + query_code;
+				}
+
+				var subject = $("#subject").val();
+				if(subject != -1) {
+					paras += "&subject=" + subject;
+				}
+
+				var start_time = $("#start_time").val();
+				if(start_time == "") {
+					alerts("必须输入开始时间");
+					return;
+				} else {
+					paras += "&start_time=" + start_time;
+				}
+				var end_time = $("#end_time").val();
+				if(end_time == "") {
+					alerts("必须输入结束时间");
+					return;
+				} else {
+					paras += "&end_time=" + end_time;
+				}
+
+				var status = $("#ddstatus").val();
+				if(status != -1) {
+					paras += "&status=" + status;
+				}
+				var handletype = $("#ddhandletype").val();
+				paras += "&handletype=" + handletype;
+
+				location.href = encodeURI("/home/contract/contractlist?query=true" + paras);
+
+			}
+		</script>
+
+	</body>
+
+</html>

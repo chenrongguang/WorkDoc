@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>创建应用</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+	</head>
+	<style>
+		#file_upload_1-button{
+			color:#e53f2c;
+		}
+		#file_upload_1-button:hover{
+			color:#e53f2c;
+		}
+	</style>
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left"><?php echo $html; ?></div>
+			<div class="wd_bg">创建应用</div>
+			<div class="mation_right fl lm">
+				<!--<p class="mation_title" style="border-bottom: 1px solid #eeeeee;">创建/查看应用</p>-->
+				<form class="z_d" action="/home/dev/appaddDo" name="form" id="form" method="post">
+					<input type="hidden" name="hd_app_key" id="hd_app_key" value="{$hd_app_key}" {if condition="isset($_GET['status'])" } readonly {/if} />
+					<label class="fl z_name mc">应用名称：</label>
+					<input class="z_inp fl mp" type="text" id="app_name" name="app_name" value="{$app_name}" {if condition="isset($_GET['status'])" } readonly {/if}/>
+					<label class="fl z_name mc">类型：</label>
+					<select id="ddtype" name="ddtype" class="fl z_inp mp" style="background: white" {if condition="isset($_GET['status'])" } disabled="disabled" {/if}>
+						<option value="0">自用</option>
+						<option value="1">第三方</option>
+					</select>
+					{if condition="$confirm_status eq 2 "}
+					<label class="fl z_name mc">授权码(app_key)：</label>
+					<input class="z_inp fl mp" type="text" id="app_key" name="app_key" value="{$app_key}" readonly/>
+					<label class="fl z_name mc">app_secrect：</label>
+					<input class="z_inp fl mp" type="text" value="{$app_secrect}" id="app_secrect" name="app_secrect" readonly/>
+					{else/}
+					<input class="z_inp fl mp" type="hidden" id="app_key" name="app_key" value="{$app_key}" readonly/>
+					<input class="z_inp fl mp" type="hidden" value="{$app_secrect}" id="app_secrect" name="app_secrect" readonly/>
+					{/if}
+					<!--
+			<label class="fl z_name">消息秘钥：</label>
+			<input class="z_inp" type="text" value=""/>
+			-->
+					<label class="fl z_name mc">app_url：</label>
+					<input class="z_inp fl mp" type="text" value="{$app_notify_url}" id="app_notify_url" name="app_notify_url"{if condition="isset($_GET['status'])" } readonly {/if} />
+					<label class="fl z_name mc">端口：</label>
+					<input class="z_inp fl mp" type="text" id="app_notify_port" name="app_notify_port" value="{$app_notify_port}" {if condition="isset($_GET['status'])" } readonly {/if} />
+
+					<label class="fl z_name mc">应用描述：</label>
+					<textarea class="z_inp fl mp" id="desc" name="desc" rows="5" cols="20" {if condition="isset($_GET['status'])" } readonly {/if} />{$desc}</textarea>
+				   <!--{if condition="isset($_GET['app_key']) eq '' "}
+						<label class="fl z_name mc checkbox" id="xieyi" style="cursor: pointer">同意 《易签云开发者服务协议》：</label>
+						<input class="fl z_name" id="isread1"  type="checkbox" style="margin-top: 30px;" />
+					{/if}-->
+					
+					<div class="sty_box">
+						<label class="fl z_name mc mag">图标(png格式)：</label>
+						<div class="fl pos_r pos_d" id="">
+							<p class="j_name"></p>
+							{if condition="isset($_GET['status']) && isset($_GET['app_key'])" }
+							   {else/}
+								{if condition="$pic_url eq '' "}
+									<img class="yi_ca" src="/assets/img/slo.jpg" id="img_legal_pic1"  style="margin-bottom: 5px;"/>
+								{/if}
+								<span id="cha_d">×</span>
+							{/if}
+
+						<div style="clear: both;"></div>
+						{if condition="$pic_url"}
+						<div class="cum cmd tu_img" id="upload1" style="margin-top: 10px;">
+							<img src="{$pic_url}" id="app_icon" class="sty_img fl" />
+						</div>
+						</div>	
+						{else/}
+							{if condition="isset($_GET['status'])" }
+								<img src="/admin/h-ui/images/zanwutup.png">
+							{/if}
+							<div class="fl cmd tu_img" id="upload1">
+								<img src="{$pic_url}" id="app_icon" style="display: none;" class="sty_img fl" />
+							</div>
+						{/if}
+					</div>
+					<div style="clear: both;"></div>
+					<div id="cop" class="cop cur zii top_b" onclick="sub(1)">保存</div>
+					<input type="hidden" id="pic_url" name="pic_url" value="{$pic_url}" />
+					<input type="hidden" name="hd_app_type" id="hd_app_type" value="{$hd_app_type}" />
+					<input type="hidden" name="id"  value="{$id}" />
+					<input type="hidden" name="confirm_status"  value="{$confirm_status}" />
+					{if condition="isset($_GET['status'])" }
+					 {else/}
+						<div style="width:60%;margin: auto;line-height: 40px;border-radius:6px; text-align: center; margin-top: 20px;font-size: 14px; border: 1px solid #c3c3c3;">
+							上传图片大小不超过<b style="color: red">1MB</b>,上传图片格式为<b style="color: red">png</b>，上传图片的尺寸最好是正方形
+						</div>
+					{/if}
+				</form>
+			</div>
+		</div>
+		{include file="pub/footer" /}
+
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+		<script src="/assets/js/libs/uploadH/jquery.Huploadify.js"></script>
+		<script>
+			$(document).ready(function() {
+				var is_status = "{$_GET['status']?$_GET['status']:0}";
+				if(is_status > 0) {
+					re_init_upload();
+					var app_type = $("#hd_app_type").val();
+					$("#ddtype").val(app_type);
+					$('#cop').css("display", "none");
+					$('.yi_ca').css("display", "none");
+					/*$("#cha_d").css("display", "none");*/
+				}else{
+					init_upload();
+					var app_type = $("#hd_app_type").val();
+					$("#ddtype").val(app_type);
+					/*$("#cha_d").css("display", "block");*/
+					}
+			});
+			$(document).ready(function() {
+				if($('#pic_url').val() != ""){
+					$("#cha_d").css("display", "block");
+				}
+				$('#cha_d').click(function(){
+					
+					var a=$("#app_icon").attr("src");
+					$('#app_icon').attr("src","/assets/img/no_pic3.jpg");
+					$('#pic_url').val("");
+					$("#cha_d").css("display", "none");
+				});
+				
+			})
+
+			function init_upload() {
+				$('#upload1').Huploadify({
+					auto: true,
+					'uploader': "/home/pub/uploadimgH?folder=pic",
+					'buttonText': '<div style="text-align: center;">上传png图片<div>',
+					'width': '110px',
+					'multi': false,
+					'showUploadedPercent': false,
+					'fileTypeExts': '*.png',
+					'fileSizeLimit': "1024", //正式限制
+					'onInit': function() {
+						//$(".uploadify-queue").hide();
+					},
+					'onUploadStart': function() {
+						$("#cha_d").css("display", "block");
+					},
+					'onUploadSuccess': function(file, data, response) {
+						var jsonData = eval('(' + data + ')');
+						//如果上传成功
+						if(jsonData['error'] == 0) {
+							//显示预览的图片，并且负责给隐藏域，点保存的时候传递到后台
+							$('#pic_url').val(jsonData['url']);
+							$('#raw_name').val(jsonData['raw_name']);
+							$('#app_icon').attr('src', jsonData['url']);
+							$("#cha_d").css("display", "block");
+						}
+						$('.yi_ca').css("display", "none");
+						$('.sty_img').css("display", "block");
+						$(".pos_r span").css("display", "block");
+					},
+					'onUploadComplete': function() {},
+					'onUploadError': function(file, errorCode, errorMsg, errorString) {
+						$('.j_name').text("上传失败，请重试...");
+					}
+				});
+			}
+
+			function re_init_upload() {
+				$('#upload1').Huploadify({
+					auto: true,
+					'uploader': "/home/pub/uploadimgH?folder=pic",
+					'buttonText': '',
+					'width': '110px',
+					'multi': false,
+					'showUploadedPercent': false,
+					'fileTypeExts': '*.png',
+					'fileSizeLimit': "1024", //正式限制
+					'onInit': function() {
+						//$(".uploadify-queue").hide();
+					},
+					'onUploadStart': function() {},
+					'onUploadSuccess': function(file, data, response) {
+						var jsonData = eval('(' + data + ')');
+						//如果上传成功
+						if(jsonData['error'] == 0) {
+							//显示预览的图片，并且负责给隐藏域，点保存的时候传递到后台
+							$('#pic_url').val(jsonData['url']);
+							$('#raw_name').val(jsonData['raw_name']);
+							$('#app_icon').attr('src', jsonData['url']);
+							$("#cha_d").css("display", "block");
+						}
+						$('.yi_ca').css("display", "none");
+						$('.sty_img').css("display", "block");
+					},
+					'onUploadComplete': function() {},
+					'onUploadError': function(file, errorCode, errorMsg, errorString) {
+						$('.j_name').text("上传失败，请重试...");
+					}
+				});
+			}
+			
+			function validation() {
+				if($("#app_name").val() == "") {
+					alerts("请输入应用名称");
+					return false;
+				}
+				if($("#app_notify_url").val() == "") {
+					alerts("请输入应用通讯url");
+					return false;
+				}
+				if($("#app_notify_port").val() == "") {
+					alerts("请输入应用端口");
+					return false;
+				}
+				// 判断是否同意此协议
+				/*var isRead1 = $("#isread1").is(':checked');
+
+				if(isRead1 !== true) {
+					alerts("请先同意《易签云开发者服务协议》");
+					return false;
+				}*/
+
+				var app_type = $("#ddtype").val();
+				$('#hd_app_type').val(app_type);
+				return true
+			}
+			$("#xieyi").click(function(){
+				layer.open({
+					type: 2,
+					title: '易签云用户注册与使用协议',
+					shadeClose: true,
+					shade: 0.2,
+					area: ['893px', '700px'],
+					content: '/home/dev/xieyi.html'
+				});
+			});
+		</script>
+	</body>
+
+</html>

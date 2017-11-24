@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>授权应用</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="/assets/css/style.min.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+<style>
+	.show_q{
+		color:#e53f2c;
+		font-size: 18px;
+		height: 66px;
+		padding-left:20px;
+		border-bottom: 2px solid #e53f2c;
+		margin-bottom: 0px;
+		font-weight: bold;
+	}
+	.qy_s{
+		float: right;
+		font-size: 16px;
+	}
+	#app_key{
+		height:40px;
+		width:300px;
+		/*border-radius:8px 0px 0px 8px;*/
+		border: 1px solid #E3E3E3;
+		padding-left: 20px;
+		color:#C2C2C2;
+	}
+	#s_suo{
+		width: 100px;
+		height:40px;
+		color:#fff;
+		vertical-align: middle;
+		line-height: 40px;
+		background:#e53f2c;
+		border: 0px;
+		margin-left: -5px;
+		margin-top: -2px;
+		}
+	.qy_sq{
+		width:100%;
+		line-height: 40px;
+		font-size: 16px;
+		clear: both;
+	
+	}
+	
+	.sq_a,.sq_b{
+		width:100%;
+		height:40px;
+		border-bottom:1px solid #e3e3e3 ;
+		color:#000;
+	}
+	.sq_a{
+		height: 50px;
+		line-height: 50px;
+		background: #f4f4f4;
+	}
+	.sq_a span,.sq_b span{
+		display:inline-block;
+		width: 33%;
+		float: left;
+		text-align: center;
+	}
+	.me_y{
+		clear:both;
+		z-index: 9999999;
+		width:100%;
+		height: 100%;
+		background:rgba(0,0,0,0.6);
+		position:fixed;
+		
+	}
+	.me_y1{
+		width:300px;
+		height: 100px;
+		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		position: absolute;
+		top:50%;
+		left:50%;
+		border-radius:14px ;
+		font-size: 16px;
+		background:#fff;
+		color:#000;
+	}
+	.me_y1 p{
+		margin-bottom: 0px;
+	}
+	#cha_d{
+		width:30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		float: right;
+		cursor: pointer;
+		font-size: 22px;
+	}
+	.zi{
+		clear: both;
+		width:100%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+	}
+</style>
+</head>
+<body style="background-color: #f4f4f4;">
+{include file="pub/header" /}
+	<div class="mation_content">
+		<div id="j_left"><?php echo $html; ?></div>
+		<div class="wd_bg wd_bgtop">授权应用</div>
+		<div class="mation_right fl" style="margin-top: 30px;">
+			<form id="tijiao" method="post" action="/home/dev/authlist" >
+				<p class="show_q">
+				
+					<span class="qy_s">
+					<input type="text" name="app_key" id="app_key" value="{$app_key}" placeholder="请输入企业授权码" />
+					<button id="s_suo"/>搜索</button>
+					</span>
+				</p>
+				</form>
+			<div class="qy_sq">
+				<div class="sq_a">
+					<span>企业名称</span>
+					<span>应用名称</span>
+					<span>操作</span>
+				</div>
+				{if condition="$list"}
+					{volist name="list" id="vo"}
+					<div class="sq_b">
+						<span>{$vo.user_name}</span>
+						<span> {$vo.app_name}</span>
+						<span>{eq name="vo.auth_id" value=""}<a href="/home/dev/auth?app_key={$vo.app_key}" style="color: burlywood">去授权</a>{else/}已授权{/eq}</span>
+					</div>
+					{/volist}
+				{else/}
+					{if condition="$query eq 1 "}
+						<div class="sq_b">
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span>您好！请输入企业授权码，进行搜索</span>
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</div>
+					{else/}
+						<div class="sq_b">
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span>您好！没有该企业授权码，请重新输入</span>
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</div>
+					{/if}
+				{/if}
+
+			</div>
+		</div>
+
+	</div>
+	
+{include file="pub/footer" /}
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/js/layer/layer.js"></script>
+	<script src="/assets/js/function.js"></script>
+	<!-- ================== END BASE JS ================== -->
+
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="/assets/js/login-v2.demo.min.js"></script>
+	<script src="/assets/js/apps.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+	<script src="/assets/js/libs/common.js"></script>
+	<script src="/assets/js/libs/jquery.form.min.js"></script>
+	<script>
+		$("#cha_d").click(function(){
+			 $(".me_y").css("display","none");
+		})
+		$(".appli_box").click(function(){
+			$(this).addClass("cu_bg1");
+			$(this).siblings().removeClass("cu_bg1");
+		    
+		  });
+		  
+		$("#solo_k").css("background","#eee");
+		$(".yong_h").css("background", "#0a61d4");
+		 
+	</script>
+   <script>
+	   $('#s_suo').click(function(){
+		   var app_key = $('#app_key').val();
+		   if(app_key){
+			   $('#tijiao').submit();
+		   }else{
+			   error('请输入企业授权码');
+			   return false;
+		   }
+
+
+	   })
+   </script>
+	 
+</body>
+</html>

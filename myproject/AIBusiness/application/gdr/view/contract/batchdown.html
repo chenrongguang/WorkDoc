@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>批量下载</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+		<link href="/assets/css/pagination.css" rel="stylesheet">
+		<link href="/assets/css/module.css" rel="stylesheet"/>
+		<script src="/assets/js/jedate/jedate.js"></script>
+
+<style>
+	.crea{background:none;padding-left: 10px;}
+	.tScroll{
+		margin-top: 20px;
+	}
+
+</style>
+	</head>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left"><?php echo $html; ?></div>
+			<div class="wd_bg wd_bgtop">批量下载</div>
+			<div class="mation_right fl lm">
+				<div>
+					<!--<a href="/home/contract/batchdown.html" class="crea cur fl">批量下载</a>-->
+        			<p class="xin_jian creaa">
+        				<input type="button" value="新建任务" onclick="showtask();"/>
+        				<input type="button" value="隐藏任务" onclick="hidetask();"/>
+        			</p>
+				</div>
+				
+				<!--<div>
+					<input type="button" value="新建任务" onclick="showtask();" />
+					<input type="button" value="隐藏" onclick="hidetask();" />
+				</div>-->
+				<p style="clear: both;"></p>
+				<form class="z_d" action="/home/contract/batchdownDo" name="form" id="form" method="post">
+					<div class="ove bor_om" id="div_add_tasks" style="display: none;">
+						<label class="fl z_name c_x">用户名：</label>
+						<input class="z_inp wid_20 fl i_n" type="text" style="border: none" value="{$Think.session.user['user_name']}" readonly="true"/>
+						<!--<div class="rell ove fl k_s">
+							<label class="fl z_name s_j">业务日期：</label>
+							<input class="z_inp wid_20 fl b_d" type="text" value="" id="bus_date" name="bus_date" placeholder="选择日期" />
+							<img onClick="jeDate({dateCell:'#bus_date',format:'YYYY-MM-DD',maxDate:'{$max_date}'})"  class="rili cur" src="/assets/img/img11.png" />
+						</div>-->
+						<div class="rell ove fl k_s page-container">
+							<label class="fl z_name s_j">业务日期：</label>
+							<input  class="z_inp wid_20 fl b_d input-text laydate-icon" type="text" value="" id="bus_date" name="bus_date" placeholder="选择日期" readonly />
+						</div>
+						<label class="fl z_name c_x">任务名称：</label>
+						<input class="bao_cun1 z_inp wid_20 fl i_n" type="text" value="" id="txt_task_name" name="txt_task_name" placeholder="任务名称" />
+					<!--	<input class="bao_cun" type="button" value="保存" onclick="sub(1)" />-->
+						<!--<p class="crea cur query" onclick="_search()">查询</p>-->
+						<p class="xin_jian creaa">
+							<input type="button" style="background-color:#e53f2c; color:#fff; padding: 5px 25px;"   value="保存" onclick="sub(1);"/>
+						</p>
+					</div>
+				</form>
+
+				<div class="tScroll">
+					<table class="pp">
+						<tr class="mm">
+							<td class="bb bp"><p style="width:240px;">用户名</p></td>
+							<td class="bb bp"><p style="width:200px;">业务日期</p></td>
+							<td class="bb bp"><p style="width:280px;">任务名称</p></td>
+							<td class="bb bp"><p style="width:260px;">创建时间</p></td>
+							<td class="bb bp"><p class="border_right" style="width:200px;">操作</p></td>
+						</tr>
+						{volist name="list" id="vo"}
+						<tr class="nn">
+							<td class="cc c_text" style="display:block;width:240px">{$vo.user_name}</td>
+							<td class="cc c_text" style="display:block;width:200px">{$vo.bus_date}</td>
+							<td class="cc c_text" style="display:block;width:280px">{$vo.task_name}</td>
+							<td class="cc c_text" style="display:block;width:260px">{$vo.create_time | date="Y-m-d H:i",###}</td>
+							<td class="cc c_text" style="display:block;width:200px">
+								<p class="xv">
+									{eq name="vo.status" value="1"}处理中{/eq}
+									{eq name="vo.status" value="2"}
+									<span class="lk">
+										<a href="{$vo.filepath}">下载</a>
+										<!--
+										<a href="#" onclick="download();">下载</a>
+										-->
+									</span> {/eq}
+								</p>
+							</td>
+						</tr>
+						{/volist}
+					</table>
+				</div>
+			</div>
+		</div>
+		{include file="pub/footer" /}
+
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/admin/lib/laydate.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+
+		<script>
+			function showtask() {
+				$('#div_add_tasks').css("display", "block");
+			}
+
+			function hidetask() {
+				$('#div_add_tasks').css("display", "none");
+			}
+
+			function validation() {
+				if($("#bus_date").val() == "") {
+					alerts("请输入日期");
+					return false;
+				}
+				if($("#txt_task_name").val() == "") {
+					alerts("请输入任务名称");
+					return false;
+				}
+				return true;
+			};
+
+			function download() {
+
+			}
+			$("#solo_p2").css("background","#eee");
+			$(".wen_d").css("background", "#0a61d4");
+		</script>
+		<script>
+			laydate.skin('molv');
+			var start = {
+				elem: '#bus_date',
+				format: 'YYYY-MM-DD',
+				istime: false,
+				max:"{$max_date}",
+				istoday: false,
+			};
+			laydate(start);
+		</script>
+	</body>
+
+</html>

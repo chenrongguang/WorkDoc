@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>我的应用</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+	</head>
+	<style>
+		.bi {
+			text-align: center;
+		}
+	</style>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+			<div id="j_left">
+				<?php echo $html; ?>
+			</div>
+			<div class="wd_bg wd_bgtop">我的应用</div>
+			<div class="mation_right fl lm">
+				<a href="javascript:;" id="app">
+					<p class="crea cur" style="font-family: 微软雅黑">去创建应用</p>
+				</a>
+				<div class="tScroll">
+					<table class="pp">
+						<tr class="mm">
+							<td class="bb bi">
+								<p style="width:103px;">应用名称 </p>
+							</td>
+							<td class="bb bi">
+								<p style="width:100px;">应用类型</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:250px;">授权码(app_key)</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:250px;">app_secrect</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:240px;">app_url</p>
+							</td>
+							<td class="bb bi">
+								<p style="width:110px;">状态</p>
+							</td>
+							<td class="bb bi">
+								<p class="border_right" style="width:140px;">操作</p>
+							</td>
+						</tr>
+						{empty name="list"}
+						<tr>
+							<td colspan="6">您还没有创建应用</td>
+						</tr>
+						{else /} {volist name="list" id="vo"}
+						<tr class="nn">
+							<td class="cc fl c_text" style="display:block;" title="{$vo.app_name}">
+								<div class="nxd" style="width: 103px;">{$vo.app_name}</div>
+							</td>
+							<td class="cc fl c_text" style="display:block;" title="{eq name="vo.app_type" value="0"}自用{/eq}{eq name="vo.app_type" value="1"}第三方{/eq}">
+								<div class="nxd" style="width: 100px;">{eq name="vo.app_type" value="0"}自用{/eq}{eq name="vo.app_type" value="1"}第三方{/eq}</div>
+							</td>
+							{if condition="$vo['confirm_status'] eq 2 "}
+								<td class="cc fl c_text" style="display:block;" title="{$vo.app_key}">
+									<div class="nxd" style="width: 250px;">
+										<input value="{$vo.app_key}" readonly="readonly" style="background: #fff;border:none;" />
+										<a href="#" onclick="copyUrl2($(this))">点击复制</a>
+									</div>
+								</td>
+								<td class="cc fl c_text zxx_text_overflow" title="{$vo.app_secrect}">
+									<div class="nxd" style="width: 250px;">
+										<input value="{$vo.app_secrect}" readonly="readonly" style="background: #fff;border:none;" />
+										<a href="#" onclick="copyUrl2($(this))">点击复制</a>
+									</div>
+								</td>
+							{else/}
+							<td class="cc fl c_text" style="display:block;">
+								<div class="nxd" style="width: 250px;">
+									暂无授权码(app_key)
+								</div>
+							</td>
+							<td class="cc fl c_text zxx_text_overflow">
+								<div class="nxd" style="width: 250px;">
+									暂无app_secrect
+								</div>
+							</td>
+							{/if}
+
+							<td class="cc fl c_text" style="display:block;"  title="{$vo.app_notify_url}" >
+								<div class="nxd" style="width:240px;">{$vo.app_notify_url}</div>
+							</td>
+							<td class="cc fl c_text" style="display:block;">
+								<div class="nxd" style="width:110px;">
+									<span style="color:#49afcd">
+							{if condition="$vo['confirm_status'] eq 1 "}
+								等待审核
+							{/if}
+						</span>
+									<span style="color:#04c;">
+							{if condition="$vo['confirm_status'] eq 0 "}
+								未审核
+							{/if}
+						</span>
+									<span style="color:#5bb75B">
+						{if condition="$vo['confirm_status'] eq 2 "}
+							审核通过
+						{/if}
+						 </span>
+									<span style="color:#bd362f">
+							{if condition="$vo['confirm_status'] eq 3 "}
+								审核失败
+							{/if}
+						</span>
+								</div>
+
+							</td>
+							<td class="cc fl c_text" style="display:block;">
+								<div class="nxd" style="width:140px;">
+									<span class="lk">
+							{if condition="$vo['confirm_status'] eq 2 "}
+							<a href="#" onclick="_select('{$vo.app_key}')">查看</a>
+							{else/}
+							<a href="#" onclick="edit('{$vo.app_key}')">编辑</a>
+							{/if}
+						</span>
+									<span class="lk"><a href="#" onclick="_del('{$vo.app_key}')">删除</a></span>
+								</div>
+							</td>
+						</tr>
+						{/volist} {/empty}
+					</table>
+				</div>
+			</div>
+		</div>
+		{include file="pub/footer" /}
+
+		<script src="/assets/js/libs/jquery-3.0.0.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<script>
+			$('#app').click(function() {
+				var business_status = "{$business_status??0}";
+				if(business_status == 2) {
+					location.href = "/home/dev/xieyi";
+				} else {
+					alerts('资料审核通过之后才可以创建应用');
+				}
+
+			});
+
+			function copyUrl2(obj) {
+				var copys = obj.siblings();
+				copys.select(); // 选择对象 
+				document.execCommand("Copy"); // 执行浏览器复制命令
+				success('复制成功')
+				//alerts();
+				//error("失败");
+			}
+
+			function edit(app_key) {
+				location.href = "/home/dev/appadd?app_key=" + app_key;
+			}
+
+			function _select(app_key) {
+				location.href = "/home/dev/appadd?status=1&app_key=" + app_key;
+			}
+
+			function _del(app_key) {
+				var app_key = app_key;
+				confirm("你确定要删除该应用吗", function() {
+					var path = "/home/dev/ajaxDelApp";
+					$.ajax({
+						type: "post",
+						url: path,
+						data: JSON.stringify({ app_key: app_key }),
+						async: false,
+						success: function(data) {
+							if(data.result == 'SUCCESS') {
+								success(data.msg);
+								location.href = "/home/dev/applist";
+							} else {
+								error(data.msg);
+							}
+						}
+					});
+				});
+			}
+		</script>
+	</body>
+
+</html>

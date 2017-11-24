@@ -1,0 +1,267 @@
+<div class="tScroll" >
+	<table class="pp">
+		<tr class="mm">
+			<td class="bb">
+				<p style="width:175px;">发起者</p>
+			</td>
+			<td class="bb">
+				<p style="width:175px;">发件人</p>
+			</td>
+			<td class="bb">
+				<p style="width:165px;">发件时间</p>
+			</td>
+			<td class="bb">
+				<p style="width:175px;">收件人</p>
+			</td>
+			<td class="bb">
+				<p style="width:165px;">文档状态</p>
+			</td>
+			<td class="bb">
+				<p style="width:165px;">到期时间</p>
+			</td>
+			<td class="bb">
+				<p style="width:170px;" class="border_right">操作</p>
+			</td>
+		</tr>
+		{volist name="list" id="vo"}
+		<tr class="nn">
+			<td class="cc fl c_text ct" style="width:175px;display:block;" title="{if condition="$vo['initiator']"}
+					{if condition="$vo['initiator']['user_name']"}
+					{if condition="$vo['initiator']['app_key'] eq '0000' "}
+					-
+					{else/}
+					{$vo['initiator']['user_name']}
+					{/if}
+					{else/}
+					-
+					{/if}
+
+					{else/}
+					-
+					{/if}" >
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['initiator']"}
+					{if condition="$vo['initiator']['user_name']"}
+					{if condition="$vo['initiator']['app_key'] eq '0000' "}
+					-
+					{else/}
+					{$vo['initiator']['user_name']}
+					{/if}
+					{else/}
+					-
+					{/if}
+
+					{else/}
+					-
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:175px;display:block;" title="{if condition="$vo['sender']"}
+					{if condition="$vo['sender']['user_name']"}
+					{$vo['sender']['user_name']}
+					{else/}
+					-
+					{/if}
+					{else/}
+					-
+					{/if}">
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['sender']"}
+					{if condition="$vo['sender']['user_name']"}
+					{$vo['sender']['user_name']}
+					{else/}
+					-
+					{/if}
+					{else/}
+					-
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:165px;display:block;" title="{if condition="$vo['sender']"}
+					{if condition="$vo['sender']['create_time']"}
+					{$vo['sender']['create_time']|date="Y-m-d H:i:s",###}
+					{else/}
+					-
+					{/if}
+
+					{else/}
+					-
+					{/if}">
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['sender']"}
+					{if condition="$vo['sender']['create_time']"}
+					{$vo['sender']['create_time']|date="Y-m-d H:i:s",###}
+					{else/}
+					-
+					{/if}
+
+					{else/}
+					-
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:175px;display:block;" title="{if condition="$vo['collect']"}
+					{$vo['collect']}
+					{else/}
+					-
+					{/if}">
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['collect']"}
+					{$vo['collect']}
+					{else/}
+					-
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:165px;display:block;">
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['status'] eq 1"}
+						等待他人签署
+					{elseif condition="$vo['status']  eq 2" /}
+					已完成
+					{elseif condition="$vo['status']  eq 4" /}
+					已撤销
+					{elseif condition="$vo['status']  eq 5" /}
+					已拒签
+					{elseif condition="$vo['status']  eq 6" /}
+					已过期
+					{elseif condition="$vo['status']  eq 8" /}
+					需要我完成
+					{elseif condition="$vo['status']  eq 9" /}
+					待他人完成
+					{else/}
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:165px;display:block;" title="{if condition="$vo['end_time']"}
+					{$vo['end_time']|date="Y-m-d H:i:s",###}
+					{else/}
+					-
+					{/if}">
+				<div class="nxd">
+					<a href="/home/contract/details_all/contract_code/{$vo.contract_code}">
+					{if condition="$vo['end_time']"}
+					{$vo['end_time']|date="Y-m-d H:i:s",###}
+					{else/}
+					-
+					{/if}
+						</a>
+				</div>
+			</td>
+			<td class="cc fl c_text" style="width:170px;display:block;">
+				<div class="nxd">
+					{if condition="$vo['status'] eq 1"}
+					-
+					{elseif condition="$vo['status']  eq 2" /}
+					<a href="/home/fileinfo/get?code={$vo.contract_code}&content=package&handle=download"  target="_blank">下载</a>
+					{elseif condition="$vo['status']  eq 4" /}
+					-
+					{elseif condition="$vo['status']  eq 5" /}
+					-
+					{elseif condition="$vo['status']  eq 6" /}
+					-
+					{elseif condition="$vo['status']  eq 8" /}
+					<span class="go_sign" data-tmpl_code="{$vo.tmpl_code}" data-transfer_id="{$vo.transfer_id}" data-query_code="{$vo.query_codes}" >签署</span>
+					<span onclick="refuse_contract('{$vo.contract_code}',$(this))">拒绝</span>
+					<script>
+						$('.go_sign').click(function(){
+							var tmpl_code = $(this).data('tmpl_code');
+							var query_code = $(this).data('query_code');
+							var transfer_id = $(this).data('transfer_id');
+							localStorage.setItem("conractonline_tmpl_code",tmpl_code);
+							localStorage.setItem("conractonline_query_code",query_code);
+							//localStorage.setItem("conractonline_target_id",target_id);
+							location.href = "/home/transfersign/onlinestep1?transfer_id="+transfer_id;
+						})
+						function refuse_contract(contract_code,self){
+							var _this = self;
+							confirm("你确定要拒绝签署这份合同么",function (){
+								var path = "/home/contract/refuse_contract";
+								$.ajax({
+									type: "post",
+									url: path,
+									data: JSON.stringify({contract_code:contract_code}),
+									async: false,
+									success: function (data) {
+										console.log(data);return;
+										if (data.result == 'SUCCESS') {
+											success(data.msg);
+											_this.html('已拒绝');
+											_this.removeAttr("onclick");
+										} else {
+											error(data.msg);
+										}
+									}
+								});
+							});
+						}
+					</script>
+					{elseif condition="$vo['status']  eq 9" /}
+					<!--<span onclick="message_send('{$vo.collect_userid}','{$vo.contract_code}','{$vo.target_times}')">提醒</span>-->
+					<span onclick="withdraw_contract('{$vo.contract_code}',$(this))">撤回</span>
+					<script>
+						function message_send(user_ids,contract_code,target_times){
+							confirm("你确定要提醒用户签署文件么",function (){
+								var path = "/home/contract/message_send";
+								$.ajax({
+									type: "post",
+									url: path,
+									data: JSON.stringify({user_ids: user_ids,contract_code:contract_code,target_times:target_times}),
+									async: false,
+									success: function (data) {
+										if (data.result == 'SUCCESS') {
+											success(data.msg);
+											//location.href = "/home/seal/seallist";
+										} else {
+											error(data.msg);
+										}
+									}
+								});
+							});
+						}
+						function withdraw_contract(contract_code,self){
+							var _this = self;
+							confirm("你确定要撤回这份合同么",function (){
+								var path = "/home/contract/withdraw_contract";
+								$.ajax({
+									type: "post",
+									url: path,
+									data: JSON.stringify({contract_code:contract_code}),
+									async: false,
+									success: function (data) {
+										if (data.result == 'SUCCESS') {
+											success(data.msg);
+											_this.html('已撤销');
+											_this.removeAttr("onclick");
+										} else {
+											error(data.msg);
+										}
+									}
+								});
+							});
+						}
+					</script>
+					{else/}
+					{/if}
+				</div>
+			</td>
+		</tr>
+		{/volist}
+	</table>
+	{empty name="list"}
+	<td class="cc c_text" colspan="20">暂无数据</td>
+	{/empty}
+</div>
+<div id="page">
+	{$page}
+</div>

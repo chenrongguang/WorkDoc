@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="google" content="notranslate">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>签署合同</title>
+		<script type="text/javascript" src="/assets/js/libs/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="/assets/js/libs/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="/pdfjs/web/viewer.css">
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+
+		<script src="/pdfjs/web/compatibility.js"></script>
+		<!-- This snippet is used in production (included from viewer.html) -->
+		<link rel="resource" type="application/l10n" href="/pdfjs/web/locale/locale.properties">
+		<script src="/pdfjs/web/l10n.js"></script>
+		<script src="/pdfjs/build/pdf.js"></script>
+		<script src="/pdfjs/web/viewer.js"></script>
+
+		<style>
+			.wid_20,
+			.wid_18 {
+				width: 90px !important;
+				height: 26px !important;
+			}
+			
+			.step_btn {
+				margin-left: 0px !important;
+				padding: 0 10px;
+			}
+			
+			body {
+				font-size: 12px !important;
+			}
+			
+			.xyzb {
+				width: 60px;
+			}
+			
+			#div_sub {
+				margin-bottom: 240px;
+			}
+			
+			::-webkit-scrollbar {
+				width: 4px;
+				height: 0px;
+			}
+			
+			::-webkit-scrollbar-thumb {
+				background: #e53f2c;
+			}
+		</style>
+
+	</head>
+
+	<body tabindex="1" class="loadingInProgress" >
+		{include file="pub/header" /}
+		<div id="outerContainer" style="background: url(/assets/img/aimg/bg1.jpg) repeat fixed !important;">
+			<div id='div_info' style='display: none; width:100%; height:100%;position:relative; z-index:999999; background-color: rgb(0, 0, 0); opacity: 0.9; cursor: wait;'>
+		<div style='z-index:9999999999; font-size:24px; position: fixed; padding:70px; padding-bottom:90px; margin: 0px; top:30%; left: 35%; text-align: center; color:#000; border:2px solid rgb(170, 170, 170); border-radius:10px; background:#fff; cursor: wait;'>
+			<img class='fl' src='/assets/js/libs/loading.gif' style='display: inline-block; margin-top:20px;'>
+			<span class='fl' style='display: inline-block; vertical-align: middle; margin-top:25px;margin-left:10px;'>签署中,请等待......</span>
+		</div>
+	</div>
+			<div id="signInfo"></div>
+			<div id="sidebarContainer" style="display: none">
+				<div id="toolbarSidebar">
+					<div class="splitToolbarButton toggled">
+						<button id="viewThumbnail" class="toolbarButton group toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
+                    <span data-l10n-id="thumbs_label">Thumbnails</span>
+                </button>
+						<button id="viewOutline" class="toolbarButton group" title="Show Document Outline" tabindex="3" data-l10n-id="outline">
+                    <span data-l10n-id="outline_label">Document Outline</span>
+                </button>
+						<button id="viewAttachments" class="toolbarButton group" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
+                    <span data-l10n-id="attachments_label">Attachments</span>
+                </button>
+					</div>
+				</div>
+				<div id="sidebarContent">
+					<div id="thumbnailView">
+					</div>
+					<div id="outlineView" class="hidden">
+					</div>
+					<div id="attachmentsView" class="hidden">
+					</div>
+				</div>
+			</div>
+			<!-- sidebarContainer -->
+
+			<div id="mainContainer">
+				<div class="findbar hidden doorHanger hiddenSmallView" id="findbar">
+					<label for="findInput" class="toolbarLabel" data-l10n-id="find_label">Find:</label>
+					<input id="findInput" class="toolbarField" tabindex="91">
+
+					<div class="splitToolbarButton">
+						<button class="toolbarButton findPrevious" title="" id="findPrevious" tabindex="92" data-l10n-id="find_previous">
+                    <span data-l10n-id="find_previous_label">Previous</span>
+                </button>
+						<div class="splitToolbarButtonSeparator"></div>
+						<button class="toolbarButton findNext" title="" id="findNext" tabindex="93" data-l10n-id="find_next">
+                    <span data-l10n-id="find_next_label">Next</span>
+                </button>
+					</div>
+					<input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
+					<label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight">Highlight all</label>
+					<input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
+					<label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label">Match case</label>
+					<span id="findResultsCount" class="toolbarLabel hidden"></span>
+					<span id="findMsg" class="toolbarLabel"></span>
+				</div>
+				<!-- findbar -->
+
+				<div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
+					<div id="secondaryToolbarButtonContainer">
+						<button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
+                    <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+                </button>
+
+						<button id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
+                    <span data-l10n-id="open_file_label">Open</span>
+                </button>
+
+						<button id="secondaryPrint" class="secondaryToolbarButton print visibleMediumView" title="Print" tabindex="53" data-l10n-id="print">
+                    <span data-l10n-id="print_label">Print</span>
+                </button>
+
+						<button id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
+                    <span data-l10n-id="download_label">Download</span>
+                </button>
+
+						<a href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
+							<span data-l10n-id="bookmark_label">Current View</span>
+						</a>
+
+						<div class="horizontalToolbarSeparator visibleLargeView"></div>
+
+						<button id="firstPage" class="secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
+                    <span data-l10n-id="first_page_label">Go to First Page</span>
+                </button>
+						<button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57" data-l10n-id="last_page">
+                    <span data-l10n-id="last_page_label">Go to Last Page</span>
+                </button>
+
+						<div class="horizontalToolbarSeparator"></div>
+
+						<button id="pageRotateCw" class="secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="58" data-l10n-id="page_rotate_cw">
+                    <span data-l10n-id="page_rotate_cw_label">Rotate Clockwise</span>
+                </button>
+						<button id="pageRotateCcw" class="secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="59" data-l10n-id="page_rotate_ccw">
+                    <span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise</span>
+                </button>
+
+						<div class="horizontalToolbarSeparator"></div>
+
+						<button id="toggleHandTool" class="secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
+                    <span data-l10n-id="hand_tool_enable_label">Enable hand tool</span>
+                </button>
+
+						<div class="horizontalToolbarSeparator"></div>
+
+						<button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="61" data-l10n-id="document_properties">
+                    <span data-l10n-id="document_properties_label">Document Properties…</span>
+                </button>
+					</div>
+				</div>
+				<!-- secondaryToolbar -->
+
+				<div class="toolbar">
+					<div id="toolbarContainer">
+						<div id="toolbarViewer">
+							<div id="toolbarViewerLeft">
+
+								<button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar" style="display: none">
+                            <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                        </button>
+								<div class="toolbarButtonSpacer"></div>
+								<button id="viewFind" class="toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar" style="display: none">
+                            <span data-l10n-id="findbar_label">Find</span>
+                        </button>
+
+								<div class="splitToolbarButton">
+									<button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
+                                <span data-l10n-id="previous_label">Previous</span>
+                            </button>
+									<div class="splitToolbarButtonSeparator"></div>
+									<button class="toolbarButton pageDown" title="Next Page" id="next" tabindex="14" data-l10n-id="next">
+                                <span data-l10n-id="next_label">Next</span>
+                            </button>
+								</div>
+								<label id="pageNumberLabel" class="toolbarLabel" for="pageNumber" data-l10n-id="page_label">Page: </label>
+								<input type="number" id="pageNumber" class="toolbarField pageNumber" value="1" size="4" min="1" tabindex="15">
+								<span id="numPages" class="toolbarLabel"></span>
+							</div>
+							<div id="toolbarViewerRight" style="display: none">
+								<button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
+                            <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+                        </button>
+
+								<button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                            <span data-l10n-id="open_file_label">Open</span>
+                        </button>
+
+								<button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
+                            <span data-l10n-id="print_label">Print</span>
+                        </button>
+
+								<button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
+                            <span data-l10n-id="download_label">Download</span>
+                        </button>
+								<a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
+									<span data-l10n-id="bookmark_label">Current View</span>
+								</a>
+
+								<div class="verticalToolbarSeparator hiddenSmallView"></div>
+
+								<button id="secondaryToolbarToggle" class="toolbarButton" title="Tools" tabindex="36" data-l10n-id="tools">
+                            <span data-l10n-id="tools_label">Tools</span>
+                        </button>
+							</div>
+							<div class="outerCenter">
+								<div class="innerCenter" id="toolbarViewerMiddle">
+
+									<div class="splitToolbarButton" style="display: none;">
+										<button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="21" data-l10n-id="zoom_out">
+                                    <span data-l10n-id="zoom_out_label">Zoom Out</span>
+                                </button>
+										<div class="splitToolbarButtonSeparator"></div>
+										<button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In" tabindex="22" data-l10n-id="zoom_in">
+                                    <span data-l10n-id="zoom_in_label">Zoom In</span>
+                                </button>
+									</div>
+									<!--
+                            <div> Page:<input type="text" id="cur_page" style="width:30px"></div>
+                            <div> X:<input type="text" id="x_pos" style="width:30px"></div>
+                            <div> Y:<input type="text" id="y_pos" style="width:30px"></div>
+                            -->
+									<!--
+                            <div id="dragsource"><image src="/static/images/test.png" style="height: 25px" id="img-seal"></image> </div>
+                            -->
+									<!--
+                            <div><input type="button" value="查看实际签章效果" onclick="privew()"></div>
+                            -->
+									<span id="scaleSelectContainer" class="dropdownToolbarButton" style="display: none">
+                     <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom" style="display: none">
+                         <option id="pageActualOption" title="" value="page-actual" selected="selected"
+                                 data-l10n-id="page_scale_actual" style="display: none">Actual Size
+                         </option>
+                         <option id="pageAutoOption" title="" value="auto" data-l10n-id="page_scale_auto"
+                                 style="display: none">Automatic Zoom
+                         </option>
+                         <option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit"
+                                 style="display: none">Fit Page
+                         </option>
+                         <option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width"
+                                 style="display: none">Full Width
+                         </option>
+                         <option id="customScaleOption" title="" value="custom" hidden="true"></option>
+                         <option title="" value="0.5" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 50 }'
+                                 style="display: none">50%
+                         </option>
+                         <option title="" value="0.75" data-l10n-id="page_scale_percent"
+                                 data-l10n-args='{ "scale": 75 }' style="display: none">75%
+                         </option>
+                         <option title="" value="1" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 100 }'
+                                 style="display: none">100%
+                         </option>
+                         <option title="" value="1.25" data-l10n-id="page_scale_percent"
+                                 data-l10n-args='{ "scale": 125 }' style="display: none">125%
+                         </option>
+                         <option title="" value="1.5" data-l10n-id="page_scale_percent"
+                                 data-l10n-args='{ "scale": 150 }' style="display: none">150%
+                         </option>
+                         <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'
+                                 style="display: none">200%
+                         </option>
+                         <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'
+                                 style="display: none">300%
+                         </option>
+                         <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'
+                                 style="display: none">400%
+                         </option>
+
+                     </select>
+                  </span>
+								</div>
+							</div>
+						</div>
+
+						<div id="loadingBar">
+							<div class="progress">
+								<div class="glimmer">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<menu type="context" id="viewerContextMenu">
+					<menuitem id="contextFirstPage" label="First Page" data-l10n-id="first_page"></menuitem>
+					<menuitem id="contextLastPage" label="Last Page" data-l10n-id="last_page"></menuitem>
+					<menuitem id="contextPageRotateCw" label="Rotate Clockwise" data-l10n-id="page_rotate_cw"></menuitem>
+					<menuitem id="contextPageRotateCcw" label="Rotate Counter-Clockwise" data-l10n-id="page_rotate_ccw"></menuitem>
+				</menu>
+
+				<div class="zuo_lan" style="clear: both;">
+
+				</div>
+
+				<div id="viewerContainer" tabindex="0">
+					<div id="viewer" class="pdfViewer" onmousemove="bindevent();"></div>
+				</div>
+
+				<div id="errorWrapper" hidden='true'>
+					<div id="errorMessageLeft">
+						<span id="errorMessage"></span>
+						<button id="errorShowMore" data-l10n-id="error_more_info">
+                    More Information
+                </button>
+						<button id="errorShowLess" data-l10n-id="error_less_info" hidden='true'>
+                    Less Information
+                </button>
+					</div>
+					<div id="errorMessageRight">
+						<button id="errorClose" data-l10n-id="error_close">
+                    Close
+                </button>
+					</div>
+					<div class="clearBoth"></div>
+					<textarea id="errorMoreInfo" hidden='true' readonly="readonly"></textarea>
+				</div>
+			</div>
+			<!-- mainContainer -->
+
+			<div id="overlayContainer" class="hidden">
+				<div id="passwordOverlay" class="container hidden">
+					<div class="dialog">
+						<div class="row">
+							<p id="passwordText" data-l10n-id="password_label">Enter the password to open this PDF file:</p>
+						</div>
+						<div class="row">
+							<!-- The type="password" attribute is set via script, to prevent warnings in Firefox for all http:// documents. -->
+							<input id="password" class="toolbarField">
+						</div>
+						<div class="buttonRow">
+							<button id="passwordCancel" class="overlayButton"><span data-l10n-id="password_cancel">Cancel</span>
+                    </button>
+							<button id="passwordSubmit" class="overlayButton"><span data-l10n-id="password_ok">OK</span>
+                    </button>
+						</div>
+					</div>
+				</div>
+				<div id="documentPropertiesOverlay" class="container hidden">
+					<div class="dialog">
+						<div class="row">
+							<span data-l10n-id="document_properties_file_name">File name:</span>
+
+							<p id="fileNameField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_file_size">File size:</span>
+
+							<p id="fileSizeField">-</p>
+						</div>
+						<div class="separator"></div>
+						<div class="row">
+							<span data-l10n-id="document_properties_title">Title:</span>
+
+							<p id="titleField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_author">Author:</span>
+
+							<p id="authorField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_subject">Subject:</span>
+
+							<p id="subjectField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_keywords">Keywords:</span>
+
+							<p id="keywordsField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_creation_date">Creation Date:</span>
+
+							<p id="creationDateField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_modification_date">Modification Date:</span>
+
+							<p id="modificationDateField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_creator">Creator:</span>
+
+							<p id="creatorField">-</p>
+						</div>
+						<div class="separator"></div>
+						<div class="row">
+							<span data-l10n-id="document_properties_producer">PDF Producer:</span>
+
+							<p id="producerField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_version">PDF Version:</span>
+
+							<p id="versionField">-</p>
+						</div>
+						<div class="row">
+							<span data-l10n-id="document_properties_page_count">Page Count:</span>
+
+							<p id="pageCountField">-</p>
+						</div>
+						<div class="buttonRow">
+							<button id="documentPropertiesClose" class="overlayButton"><span
+                            data-l10n-id="document_properties_close">Close</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- overlayContainer -->
+
+		</div>
+		<!-- outerContainer -->
+		<div id="printContainer"></div>
+		<div id="mozPrintCallback-shim" hidden>
+			<style>
+				@media print {
+					#printContainer div {
+						page-break-after: always;
+						page-break-inside: avoid;
+					}
+				}
+			</style>
+			<style scoped>
+				#mozPrintCallback-shim {
+					position: fixed;
+					top: 0;
+					left: 0;
+					height: 100%;
+					width: 100%;
+					z-index: 9999999;
+					display: block;
+					text-align: center;
+					background-color: rgba(0, 0, 0, 0.5);
+				}
+				
+				#mozPrintCallback-shim[hidden] {
+					display: none;
+				}
+				
+				@media print {
+					#mozPrintCallback-shim {
+						display: none;
+					}
+				}
+				
+				#mozPrintCallback-shim .mozPrintCallback-dialog-box {
+					display: inline-block;
+					margin: -50px auto 0;
+					position: relative;
+					top: 45%;
+					left: 0;
+					min-width: 220px;
+					max-width: 400px;
+					padding: 9px;
+					border: 1px solid hsla(0, 0%, 0%, .5);
+					border-radius: 2px;
+					box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+					background-color: #474747;
+					color: hsl(0, 0%, 85%);
+					font-size: 16px;
+					line-height: 20px;
+				}
+				
+				#mozPrintCallback-shim .progress-row {
+					clear: both;
+					padding: 1em 0;
+				}
+				
+				#mozPrintCallback-shim progress {
+					width: 100%;
+				}
+				
+				#mozPrintCallback-shim .relative-progress {
+					clear: both;
+					float: right;
+				}
+				
+				#mozPrintCallback-shim .progress-actions {
+					clear: both;
+				}
+			</style>
+			<div class="mozPrintCallback-dialog-box">
+				<!-- TODO: Localise the following strings -->
+				Preparing document for printing...
+				<div class="progress-row">
+					<progress value="0" max="100"></progress>
+					<span class="relative-progress">0%</span>
+				</div>
+				<div class="progress-actions">
+					<input type="button" value="Cancel" class="mozPrintCallback-cancel">
+				</div>
+			</div>
+		</div>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<script type="text/javascript">
+			var current_o = null;
+			var arr_seal_ent = new Array(); //定义一数组
+			var online_seal_code = localStorage.getItem("online_seal_code");
+			var online_tmpl_code = localStorage.getItem("online_tmpl_code");
+			var online_tmpl_url = localStorage.getItem("online_tmpl_url");
+			var online_reciver = localStorage.getItem("online_reciver");
+
+			$(document).ready(function() {
+				//初始化前面几部获取到的用户数据:
+				init_seal(); //初始化企业已经选择的印章
+				load_seal_image(); //异步加载企业印章签名图片
+				load_subbutton();
+
+			});
+
+			//加载提交按钮
+			function load_subbutton() {
+				var h_content = "";
+				h_content += "<div id='div_result'style='width:100%;height:auto;display: none'>";
+				h_content += "<a href='#' class='a_result' target='_blank' style='display: none; text-decoration: none; margin-left:20px; color:#3e87e5; border:1px #3e87e5 solid; padding:5px 10px; border-radius:6px;'>下载合同</a>"
+				h_content += "<a href='#' class='b_result' target='_blank' style='text-decoration: none; margin-left:10px;border:1px #3e87e5 solid;color:#3e87e5; padding:5px 10px; border-radius:6px;'>预览合同</a>"
+				h_content += "</div>";
+				h_content += "<div id='div_sub'style='width:100%;height:auto;'>";
+				h_content += "<input type='button' class='btn_testsign cop cur step_btn' value='签署' style='padding:0px 45px;align:center; margin-left:20px !important;' onclick='sign_boot()'/>"
+				h_content += "</div>";
+				$('#signInfo').append(h_content);
+			}
+
+			function init_seal() {
+					h_content = "<div id='div_seal_code' style='width:100%;height:auto;'>";
+					h_content += "<input type='hidden' id='hd_seal_code' value='" + online_seal_code + "' />";
+					h_content += "<div class='fir_box'>";
+					h_content += "<image id='img_seal'class='img_seal' src='' style='width:130px;height:130px;display: inline-block; margin-left:20px !important;'/>";
+					h_content += "<input class='cop cur step_btn' type='button' value='增加签约参数' onclick='addsignpara(this)' style='padding:0px 20px;display:block;margin-left:10px !important;'/>"
+					h_content += "</div>";
+					h_content += "<div id='div_signpara'></div>";
+					h_content += "</div>";
+					$('#signInfo').append(h_content);
+
+					//加入分割符号
+					var div_split = "<br/><br/><div style='white-space:nowrap;overflow: hidden; width: 98%;'></div>";
+					$('#signInfo').append(div_split);
+
+			}
+
+			function load_seal_image() {
+				var path = "/home/seal/ajaxmakeimgbysealcode";
+					$.ajax({
+						type: "post",
+						url: path,
+						data: JSON.stringify({ seal_code: online_seal_code }),
+						async: false,
+						success: function(data) {
+							if(data.result == 'SUCCESS') {
+								$("#img_seal").attr('src', data.return_data.img_data);
+							} else {
+
+								error(data.msg);
+								return false;
+							}
+						}
+					});
+
+			}
+
+			function addsignpara(o) {
+				var rd_data = Math.random();
+				var tr_html = "<div class='fir_box se_box'><div><input class='cop cur step_btn sc' type='button' value='删除该组配置' onclick='delete_sign_para(this)' style='margin-left:10px !important;'/></div>";
+				tr_html += "<div style='white-space:nowrap;overflow: hidden;margin-bottom:20px'><input type='radio' class='rbkeyword' name='rb_sign_para_" + rd_data + "' />关键字模式:<input class='z_inp wid_20' type='text' value='' /></div>";
+				tr_html += "<div style='white-space:nowrap;overflow: hidden;'><input type='radio' class='rbcursor' checked name='rb_sign_para_" + rd_data + "' />坐标模式:<input class='kssq' type='button' value='开始拾取' onclick='startgetCursor(this)'/>&nbsp;&nbsp;<input class='kssq' type='button' value='结束拾取'  onclick='endgetCursor(this)' style='display: block; margin-left:74px;margin-top:5px;'/> </div>";
+				tr_html += "<div style='padding-left:12px;white-space:nowrap;overflow: hidden;'><span class='xyzb'>页码:</span><input class='z_inp wid_18' type='text' value='' /></div>";
+				tr_html += "<div style='padding-left:12px;white-space:nowrap;overflow: hidden;'><span class='xyzb'>X坐标:</span><input class='z_inp wid_18' type='text' value='' /></div>";
+				tr_html += "<div style='padding-left:12px;white-space:nowrap;overflow: hidden;'><span class='xyzb'>Y坐标:</span><input class='z_inp wid_18' type='text' value='' /></div><br>";
+				tr_html += "<div style='padding-left:12px;white-space:nowrap;overflow: hidden; width: 98%;'></div>";
+				tr_html += "</div>";
+				$('#div_signpara').append(tr_html);
+			}
+
+			function startgetCursor(o) {
+				current_o = o;
+			}
+
+			function endgetCursor(o) {
+				current_o = null;
+			}
+
+			function delete_sign_para(o) {
+				var p_o = $(o).parent().parent();
+				$(p_o).remove();
+			}
+
+			function getPositionX(e) {
+				e = e || window.event;
+				var screen_x = e.clientX + document.body.scrollLeft;
+				return screen_x;
+			}
+
+			function bindevent() {
+				//点击到文字处时，执行这个
+				$('.textLayer div').bind('click', function(event) {
+
+					if(current_o != null) {
+						setPage($(this));
+						setPosX($(this), event);
+						setPosY($(this), event);
+						event.stopPropagation(); //该方法，阻止其相应父事件，也就是不要重复计算了
+					}
+				});
+
+				//点击到空白处时执行这个
+				$(".textLayer").bind('click', function(event) {
+					if(current_o != null) {
+						setPage_self($(this));
+						setPosX_self($(this), event);
+						setPosY_self($(this), event);
+					}
+				});
+			}
+
+			//点击到文字处时
+			function setPage(me) {
+				var current_page = me.parent().parent().attr('data-page-number');
+				//$('#cur_page').val(current_page);
+				//$(current_o).parent().next().children("input:first-child").val(current_page);
+				$(current_o).parent().next().children().eq(1).val(current_page);
+			}
+
+			//点击到空白处时
+			function setPage_self(me) {
+				var current_page = me.parent().attr('data-page-number');
+				//$('#cur_page').val(current_page);
+				//$(current_o).parent().next().children("input:first-child").val(current_page);
+				$(current_o).parent().next().children().eq(1).val(current_page);
+			}
+
+			//点击文字处时计算横坐标
+			function setPosX(me, event) {
+				var pdf_width = me.parent().css('width').replace('px', '');
+				var pdf_x = (document.body.clientWidth - pdf_width) / 2;
+				var x_pos = getPositionX(event);
+				var finally_x = x_pos - pdf_x;
+				finally_x = convertpxpt(finally_x);
+				finally_x = lastjudage_X(finally_x);
+				//$('#x_pos').val(finally_x);
+				//$(current_o).parent().next().next().children("input:first-child").val(finally_x);
+				$(current_o).parent().next().next().children().eq(1).val(finally_x);
+			}
+
+			//点击空白处时，计算横坐标
+			function setPosX_self(me, event) {
+				var pdf_width = me.css('width').replace('px', '');
+				var pdf_x = (document.body.clientWidth - pdf_width) / 2;
+				var x_pos = getPositionX(event);
+				var finally_x = x_pos - pdf_x;
+				finally_x = convertpxpt(finally_x);
+				finally_x = lastjudage_X(finally_x);
+				//$('#x_pos').val(finally_x);
+				//$(current_o).parent().next().next().children("input:first-child").val(finally_x);
+				$(current_o).parent().next().next().children().eq(1).val(finally_x);
+			}
+
+			//点击有文字地方，获取纵坐标
+			function setPosY(me, event) {
+				var me_top = me.css('top').replace('px', '');
+				var parent_height = me.parent().css('height').replace('px', '');
+				//alert(parent_height);
+				var subdata = 70;
+				var finally_y = parent_height - me_top - subdata;
+				finally_y = convertpxpt(finally_y);
+				finally_y = lastjudage_Y(finally_y);
+				$('#y_pos').val(finally_y);
+				//$(current_o).parent().next().next().next().children("input:first-child").val(finally_y);
+				$(current_o).parent().next().next().next().children().eq(1).val(finally_y);
+			}
+
+			//击有空白地方，获取纵坐标
+			function setPosY_self(me, event) {
+				var finally_temp = me.css('height').replace('px', '') - event.offsetY;
+				finally_temp = convertpxpt(finally_temp);
+				var subdata = 5; //与有文字时的误差值
+				var finally_y = finally_temp + subdata;
+				finally_y = lastjudage_Y(finally_y);
+				//$('#y_pos').val(finally_y);
+				// $(current_o).parent().next().next().next().children("input:first-child").val(finally_y + subdata);
+				$(current_o).parent().next().next().next().children().eq(1).val(finally_y + subdata);
+			}
+
+			//将像素px转化为系统需要的单位pt
+			function convertpxpt(px) {
+				return parseInt(px * 0.6);
+			}
+
+			function lastjudage_X(x) {
+				return x + 1;
+			}
+
+			function lastjudage_Y(y) {
+				return y - 10;
+			}
+
+			function sign_boot() {
+				//alert("hello");
+				//获取企业的签章信息
+				var seal_code = "";
+				var seal_content = "";
+				var check_result = true;
+
+				seal_content = "";
+				$(".rbkeyword:checked").each(function() {
+
+					seal_code = online_seal_code;
+
+					var m_keyword = $(this).next().val();
+					if(m_keyword == "") {
+						error("设置错误,请检查");
+						check_result = false;
+						return false;
+					}
+					if(seal_content != "") {
+						seal_content += "|||";
+						seal_content += seal_code + "@#@" + m_keyword;
+					} else {
+						seal_content += seal_code + "@#@" + m_keyword;
+					}
+				});
+
+				var content_keyword = seal_content;
+				seal_content = "";
+				$(".rbcursor:checked").each(function() {
+
+					seal_code =online_seal_code;
+
+					var m_page = $(this).parent().next().children().eq(1).val();
+					var m_x = $(this).parent().next().next().children().eq(1).val();;
+					var m_y = $(this).parent().next().next().next().children().eq(1).val();;
+
+					if(m_page == "" || m_x == "" || m_y == "") {
+						error("设置错误,请检查");
+						check_result = false;
+						return false;
+					}
+
+					if(seal_content != "") {
+						seal_content += "|||";
+						seal_content += seal_code + "@#@" + m_page + "@#@" + m_x + "@#@" + m_y;
+					} else {
+						seal_content += seal_code + "@#@" + m_page + "@#@" + m_x + "@#@" + m_y;
+					}
+				});
+				var content_cursor = seal_content;
+
+				if(check_result==false){
+					return;
+				}
+
+				if(content_keyword == "" && content_cursor == "") {
+					alerts("缺少签章参数");
+					return false;
+				}
+
+				var path = "/home/bootsign/ajaxsignboot";
+
+				$.ajax({
+					type: "post",
+					url: path,
+					data: JSON.stringify({
+						tmpl_code: online_tmpl_code,
+						tmpl_url: online_tmpl_url,
+						online_seal_code: online_seal_code,
+						content_keyword: content_keyword,
+						content_cursor: content_cursor,
+						online_reciver:online_reciver
+					}),
+					async: true,
+					beforeSend: function() {
+						$('#div_sub').css('display', "none");
+						$('#div_info').css('display', "block");
+						$('#div_result').css('display', "none");
+					},
+					success: function(data) {
+						if(data.result == 'SUCCESS') {
+							$('#div_sub').css('display', "block");
+							$('#div_info').css('display', "none");
+							$('#div_result').css('display', "block");
+
+							var da = data.return_data.url;
+							var arr = da.split('=');
+							var reg = "/home/fileinfo/get?code="+arr[1]+"&content=body&handle=redirect";
+							$('.a_result').attr('href', data.return_data.url);
+							$('.b_result').attr('href', reg);
+						} else {
+							$('#div_sub').css('display', "block");
+							$('#div_info').css('display', "none");
+							$('#div_result').css('display', "none");
+							$('.a_result').attr('href', "");
+							alert(data.msg);
+						}
+					}
+				});
+			}
+		</script>
+
+	</body>
+
+</html>

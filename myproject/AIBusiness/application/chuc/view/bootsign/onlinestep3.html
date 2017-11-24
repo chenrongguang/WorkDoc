@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>设置收件人</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="/assets/css/style.min.css" rel="stylesheet" />
+		<link href="/assets/css/module.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+
+	<style>
+		.in_j {
+			margin-left: 13px;
+		}
+	
+		#lblreceiver{
+			display: block;	
+		}
+		#txt_reciver{
+			width:260px;
+			display: block;
+			margin:0px auto !important;
+		}
+		#tbent {
+			height: auto !important; 
+		}
+		.tr_cust{
+			
+		}
+	</style>
+
+	</head>
+
+	<body style="background-color: #f4f4f4;">
+		{include file="pub/header" /}
+		<div class="mation_content">
+		<!--	<div id="j_left"><?php echo $html; ?></div>-->
+		<div class="wd_bg wd_bgtop si_bg">设置收件人</div>
+			<div class="mation_right fl blk" style="padding: 30px 0px;">
+				<div class="ju_zh">
+					<table class="ta_d pp">
+						<tr class="cmo">
+							<td class="td_s"><p style="width:200px;">功能操作</p></td>
+							<td class="td_s"><p style="width:360px;">请输入收件人信息（企业邮箱/个人手机号）</p></td>
+							<td class="td_s"><p style="width:235px;" class="border_right">收件人名称</p></td>
+						</tr>
+						<!--<tr class="tr_cust" id="tbent"></tr>-->
+					</table>
+					<table  id="tbent">
+							<!--<tr class="tr_cust"></tr>-->
+					</table>
+				</div>
+	
+			<a>
+				<div id="next_btn" class="cop cur xib" onclick="next()">下一步</div>
+			</a>
+		</div
+		</div>
+		{include file="pub/footer" /}
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/js/layer/layer.js"></script>
+		<script src="/assets/js/function.js"></script>
+		<!-- ================== END BASE JS ================== -->
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="/assets/js/login-v2.demo.min.js"></script>
+		<script src="/assets/js/apps.min.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+		<script src="/assets/js/libs/common.js"></script>
+		<script src="/assets/js/libs/jquery.form.min.js"></script>
+		<script>
+			var s_top = "<label id=\"lblreceiver\" style=\"margin-top:5px;margin-left:10px;\" ><input id=\"txt_reciver\" class=\"txt_reciver\" onblur=\"showname(this)\">";
+			var s_foot = "</lable>";
+			var all_select = s_top + s_foot;
+			var tr_html = '<tr class="tr_cust"><td class="tr_d fl" style="width:200px;">' +
+				'<input class="in_j"  type="button" value="新增" onclick="addreceiver(this)" />' +
+				'<input class="in_s" type="button" value="删除" onclick="delreceiver(this)" /> ' +
+				'</td><td class="sel_inp fl" style="width:360px;">' +
+				all_select +
+				'</td><td class="fl"></td><td style="width:235px;height:38px; margin-top:38px;text-align:center; color:#000;" class="td_img fl">' +
+				'</td></tr>';
+			$(document).ready(function() {
+				$('#tbent').append(tr_html);
+			});
+
+			function delreceiver(o) {
+				if($('.tr_cust').length > 1) {
+					$(o).parent().parent().remove();
+				} else {
+					error("必须至少有一个收件方");
+				}
+			}
+
+			function addreceiver(o) {
+				var classnum = $("[class='in_j']").length;
+				if(classnum + 1 >= 5) {
+					error("最多允许4个收件方");
+				} else {
+					$('#tbent').append(tr_html);
+				}
+			}
+
+			function showname(o) {
+				var _this = $(o);
+				var p_name;
+				var receiver_mobile = $(o).val().trim();
+				var post_array = [];
+				$(".tr_cust").each(function(index, obj) {
+					p_name = $(obj).children(".sel_inp").children('label').children('input').val();
+					post_array.push(p_name);
+				})
+				indexOf(post_array, p_name);
+				if(receiver_mobile == "") {
+					return;
+				}
+				//检查收件人是否存在
+				var path = "/home/user/ajxcheckandloaduserinfo";
+				$.ajax({
+					type: "post",
+					url: path,
+					data: JSON.stringify({ receiver_mobile: receiver_mobile }),
+					async: false,
+					success: function(data) {
+						if(data.result == 'SUCCESS') {
+							_this.parent().parent().next().next().html(data.return_data.data);
+						} else {
+							$(o).parent().next().next().html('');
+							error(data.msg);
+						}
+					}
+				});
+			}
+			function indexOf(arr, item) {
+					var a = 0;
+					for(var i = 0; i < arr.length; ++i) {
+						if(item === arr[i]) {
+							a++
+						}
+					}
+					/*console.log(a);*/
+					if(a >= 2) {
+						alert("不可给同一个用户多次签署");
+						
+					}
+					return -1;
+				}
+			function next() {
+				var rec_data = "";
+				var tmp_rec = "";
+				var com = "";
+				var num = 0;
+
+				$('.txt_reciver').each(function() {
+					tmp_rec = $(this).val();
+					//检查收件人是否存在
+					var path = "/home/user/ajxcheckandloaduserinfo";
+					$.ajax({
+						type: "post",
+						url: path,
+						data: JSON.stringify({ receiver_mobile: tmp_rec }),
+						async: false,
+						success: function(data) {
+							if(data.result == 'SUCCESS') {
+							} else {
+								num++;
+							}
+						}
+					});
+					if(tmp_rec != "") {
+						if(rec_data == "") {
+							rec_data += tmp_rec;
+						} else {
+							rec_data += "@|@" + tmp_rec;
+						}
+					}
+				});
+
+
+				/*function showname(obj) {
+
+				}*/
+
+				
+				/*$('.txt_reciver').each(function() {
+					tmp_rec = $(this).val();
+					for(var i = 0; i < ary.length; i++) {
+						if(ary[i] == tmp_rec) {
+							num++;
+							if(num > 1) {
+								num = 0;
+								$(this).focus();
+								alert('不可给同一个用户多次签署');
+								throw '不可给同一个用户多次签署';
+							}
+						}
+
+					}
+				})*/
+				if(rec_data == "") {
+					error("请至少输入一个收件人");
+					//return;
+				}
+				/*if(rec_data == rec_data) {
+					alert("不可给同一个用户多次签署");
+					return;
+				}*/
+				if(num > 0) {
+					alerts('有不存在的用户');
+					return;
+				}
+				if(rec_data !== "") {
+					confirm("请再次确认收件人是否准确，点击确定将进入下一步", function() {
+						localStorage.setItem("online_reciver", rec_data);
+						location.href = "/home/bootsign/onlinestep4?";
+					});
+				}
+			}
+		</script>
+
+	</body>
+
+</html>
