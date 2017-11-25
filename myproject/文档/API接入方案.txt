@@ -1,0 +1,71 @@
+咱们是：托管式授权
+第三方开发者提供的app会托管在应用市场进行售卖，用户要通过应用市场访问app，那么这样的app就要采用托管式授权方式。
+
+1.填写好回调地址，用户授权之后会跳转到该地址
+  即程序的首页面
+2.用户点击授权跳转到首地址后，会get到code,
+  使用code换取access_token
+
+	https://gw.open.1688.com/openapi/http/1/system.oauth2/getToken/YOUR_APPKEY?grant_type=authorization_code&need_refresh_token=true&client_id= YOUR_APPKEY&client_secret= YOUR_APPSECRET&redirect_uri=YOUR_REDIRECT_URI&code=CODE
+	注：此接口必须使用POST方法提交；必须使用https
+	getToken接口参数说明：
+	a) grant_type为授权类型，使用authorization_code即可
+	b) need_refresh_token为是否需要返回refresh_token，如果返回了refresh_token，原来获取的refresh_token也不会失效，除非超过半年有效期
+	c) client_id为app唯一标识，即appKey
+	d) client_secret为app密钥
+	e) redirect_uri为app入口地址
+	f) code为授权完成后返回的一次性令牌
+	g) 调用getToken接口不需要签名
+	注：如果超过code有效期（2分钟）或者已经使用code获取了一次令牌，code都将失效，需要返回第二步重新获取code
+		
+3 返回令牌 
+getToken 返回结果 ：{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"} 
+说明：resource_owner为登录id，memberId为会员接口id，aliId为阿里巴巴集团统一的id，refresh_token_timeout表示refreshToken的过期时间
+
+4 使用令牌访问用户隐私数据 
+例如访问以下api ： http://gw.open.1688.com/openapi/param2/1/cn.alibaba.open/member.get/1?memberId=xxx&access_token=ACCESS_TOKEN&_aop_signature=SIGENATURE 签名示例见 API签名规则
+
+5.其他要点：
+1).如果refreshToken有效并且accessToken已经过期（超过10小时），
+   那么可以使用refresh_token换取access_token，不用重新进行授权，然后访问用户隐私数据。
+   方法是：
+   换取accessToken的url示例如下：
+    https://gw.api.alibaba.com/openapi/param2/1/system.oauth2/getToken/YOUR_APPKEY
+   请求参数如下：
+   grant_type=refresh_token&client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&refresh_token=REFRESH_TOKEN
+   注：此接口必须使用POST方法提交；必须使用https
+   此处grant_type参数必须为refresh_token，表示通过refreshToken换取accessToken，而不是通过临时code换取
+   调用getToken接口时不需要签名
+   
+2）如果refreshToken已经超过了半年的有效期，或者：用户修改密码，
+   或者：用户订购到期
+   或者用户通过取消授权工具取消了对app的授权，
+   那么都需要用户重新授权获取refreshToken
+   （这个过程阿里巴巴会自己控制，单用户点击以上咱们的app时，阿里会自己判断是否有
+    这几种情况，有的话，阿里会自动弹出让用户登录，并点击授权的界面，
+	然后还和第一步一样，带着code跳转到咱们的app首页，我们的处理流程和第一步一样
+	）
+3）还有就是一些自动化功能，例如自动重发，用户不登录app,而后台定时任务要执行
+   此时就需要系统更新那些过去的refresh_token.
+   规则如下：
+   如果当前时间离refreshToken过期时间在30天以内，那么可以调用postponeToken接口换取新的refreshToken；否则会报错。
+   换取refreshToken的url示例如下：
+	https://gw.open.1688.com/openapi/param2/1/system.oauth2/postponeToken/YOUR_APPKEY
+	请求参数如下：
+	client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&refresh_token=REFRESH_TOKEN&access_token=ACCESS_TOKEN
+	返回结果类似getToken的返回结果：
+	{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"}
+
+	注：此接口必须使用https，get和post都行
+	a) 调用postponeToken接口需要授权，所以必须带上access_token参数
+	b) 调用postponeToken接口时不需要签名
+	c) refresh_token参数表示当前使用的refreshToken，如果refreshToken的有效期和当前时间的差值小于30天，那么调用此接口后当前使用的refreshToken失效，返回一个新的refreshToken
+	
+	
+6.需要注意的是：
+  无论是用户第一次购买，还是用户后续从已经购买的服务里边点击咱们的App，阿里都会带一个code给我们的app,
+  也就是说我们每次都是通过以上的流程来获取究竟是哪个用户登录了咱们的应用。
+    
+	   
+	   
+	   
