@@ -25,29 +25,29 @@ class Base extends \think\Controller
         $req = $request->param();
 
         if(!isset($req['code']) || empty($req['code'])){
-            \tools\route\Redirect::redirect(config('gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
+            \tools\route\Redirect::redirect(config('gdr_app.gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
         }
 
         $code=$req['code'];
-        $para=config('gdr');
+        $para=config('gdr_app');
 
         //获取授权登录
         $obj_auth1688= new \app\service\auth1688();
         $member_id=$obj_auth1688->auth_proc($code,$para);
         if($member_id==false){
-            \tools\route\Redirect::redirect(config('gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
+            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
         //获取会员信息：
         $obj_memberinfo=new \app\service\memberinfo();
         $result_memberinfo=$obj_memberinfo->get_memberinfo($member_id);
         if($result_memberinfo==null || $result_memberinfo==false){
-            \tools\route\Redirect::redirect(config('gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
+            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
         //获取会员订购app的信息：
         $obj_apporder=new \app\service\apporder();
         $result_apporder=$obj_apporder->get_apporderInfo($member_id,$para);
         if($result_apporder==null || $result_apporder==false){
-            \tools\route\Redirect::redirect(config('gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
+            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
     }
 
