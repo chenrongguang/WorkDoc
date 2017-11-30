@@ -1,70 +1,70 @@
-ÔÛÃÇÊÇ£ºÍĞ¹ÜÊ½ÊÚÈ¨
-µÚÈı·½¿ª·¢ÕßÌá¹©µÄapp»áÍĞ¹ÜÔÚÓ¦ÓÃÊĞ³¡½øĞĞÊÛÂô£¬ÓÃ»§ÒªÍ¨¹ıÓ¦ÓÃÊĞ³¡·ÃÎÊapp£¬ÄÇÃ´ÕâÑùµÄapp¾ÍÒª²ÉÓÃÍĞ¹ÜÊ½ÊÚÈ¨·½Ê½¡£
+å’±ä»¬æ˜¯ï¼šæ‰˜ç®¡å¼æˆæƒ
+ç¬¬ä¸‰æ–¹å¼€å‘è€…æä¾›çš„appä¼šæ‰˜ç®¡åœ¨åº”ç”¨å¸‚åœºè¿›è¡Œå”®å–ï¼Œç”¨æˆ·è¦é€šè¿‡åº”ç”¨å¸‚åœºè®¿é—®appï¼Œé‚£ä¹ˆè¿™æ ·çš„appå°±è¦é‡‡ç”¨æ‰˜ç®¡å¼æˆæƒæ–¹å¼ã€‚
 
-1.ÌîĞ´ºÃ»Øµ÷µØÖ·£¬ÓÃ»§ÊÚÈ¨Ö®ºó»áÌø×ªµ½¸ÃµØÖ·
-  ¼´³ÌĞòµÄÊ×Ò³Ãæ
-2.ÓÃ»§µã»÷ÊÚÈ¨Ìø×ªµ½Ê×µØÖ·ºó£¬»ágetµ½code,
-  Ê¹ÓÃcode»»È¡access_token
+1.å¡«å†™å¥½å›è°ƒåœ°å€ï¼Œç”¨æˆ·æˆæƒä¹‹åä¼šè·³è½¬åˆ°è¯¥åœ°å€
+  å³ç¨‹åºçš„é¦–é¡µé¢
+2.ç”¨æˆ·ç‚¹å‡»æˆæƒè·³è½¬åˆ°é¦–åœ°å€åï¼Œä¼šgetåˆ°code,
+  ä½¿ç”¨codeæ¢å–access_token
 
 	https://gw.open.1688.com/openapi/http/1/system.oauth2/getToken/YOUR_APPKEY?grant_type=authorization_code&need_refresh_token=true&client_id= YOUR_APPKEY&client_secret= YOUR_APPSECRET&redirect_uri=YOUR_REDIRECT_URI&code=CODE
-	×¢£º´Ë½Ó¿Ú±ØĞëÊ¹ÓÃPOST·½·¨Ìá½»£»±ØĞëÊ¹ÓÃhttps
-	getToken½Ó¿Ú²ÎÊıËµÃ÷£º
-	a) grant_typeÎªÊÚÈ¨ÀàĞÍ£¬Ê¹ÓÃauthorization_code¼´¿É
-	b) need_refresh_tokenÎªÊÇ·ñĞèÒª·µ»Ørefresh_token£¬Èç¹û·µ»ØÁËrefresh_token£¬Ô­À´»ñÈ¡µÄrefresh_tokenÒ²²»»áÊ§Ğ§£¬³ı·Ç³¬¹ı°ëÄêÓĞĞ§ÆÚ
-	c) client_idÎªappÎ¨Ò»±êÊ¶£¬¼´appKey
-	d) client_secretÎªappÃÜÔ¿
-	e) redirect_uriÎªappÈë¿ÚµØÖ·
-	f) codeÎªÊÚÈ¨Íê³Éºó·µ»ØµÄÒ»´ÎĞÔÁîÅÆ
-	g) µ÷ÓÃgetToken½Ó¿Ú²»ĞèÒªÇ©Ãû
-	×¢£ºÈç¹û³¬¹ıcodeÓĞĞ§ÆÚ£¨2·ÖÖÓ£©»òÕßÒÑ¾­Ê¹ÓÃcode»ñÈ¡ÁËÒ»´ÎÁîÅÆ£¬code¶¼½«Ê§Ğ§£¬ĞèÒª·µ»ØµÚ¶ş²½ÖØĞÂ»ñÈ¡code
+	æ³¨ï¼šæ­¤æ¥å£å¿…é¡»ä½¿ç”¨POSTæ–¹æ³•æäº¤ï¼›å¿…é¡»ä½¿ç”¨https
+	getTokenæ¥å£å‚æ•°è¯´æ˜ï¼š
+	a) grant_typeä¸ºæˆæƒç±»å‹ï¼Œä½¿ç”¨authorization_codeå³å¯
+	b) need_refresh_tokenä¸ºæ˜¯å¦éœ€è¦è¿”å›refresh_tokenï¼Œå¦‚æœè¿”å›äº†refresh_tokenï¼ŒåŸæ¥è·å–çš„refresh_tokenä¹Ÿä¸ä¼šå¤±æ•ˆï¼Œé™¤éè¶…è¿‡åŠå¹´æœ‰æ•ˆæœŸ
+	c) client_idä¸ºappå”¯ä¸€æ ‡è¯†ï¼Œå³appKey
+	d) client_secretä¸ºappå¯†é’¥
+	e) redirect_uriä¸ºappå…¥å£åœ°å€
+	f) codeä¸ºæˆæƒå®Œæˆåè¿”å›çš„ä¸€æ¬¡æ€§ä»¤ç‰Œ
+	g) è°ƒç”¨getTokenæ¥å£ä¸éœ€è¦ç­¾å
+	æ³¨ï¼šå¦‚æœè¶…è¿‡codeæœ‰æ•ˆæœŸï¼ˆ2åˆ†é’Ÿï¼‰æˆ–è€…å·²ç»ä½¿ç”¨codeè·å–äº†ä¸€æ¬¡ä»¤ç‰Œï¼Œcodeéƒ½å°†å¤±æ•ˆï¼Œéœ€è¦è¿”å›ç¬¬äºŒæ­¥é‡æ–°è·å–code
 		
-3 ·µ»ØÁîÅÆ 
-getToken ·µ»Ø½á¹û £º{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"} 
-ËµÃ÷£ºresource_ownerÎªµÇÂ¼id£¬memberIdÎª»áÔ±½Ó¿Úid£¬aliIdÎª°¢Àï°Í°Í¼¯ÍÅÍ³Ò»µÄid£¬refresh_token_timeout±íÊ¾refreshTokenµÄ¹ıÆÚÊ±¼ä
+3 è¿”å›ä»¤ç‰Œ 
+getToken è¿”å›ç»“æœ ï¼š{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"} 
+è¯´æ˜ï¼šresource_ownerä¸ºç™»å½•idï¼ŒmemberIdä¸ºä¼šå‘˜æ¥å£idï¼ŒaliIdä¸ºé˜¿é‡Œå·´å·´é›†å›¢ç»Ÿä¸€çš„idï¼Œrefresh_token_timeoutè¡¨ç¤ºrefreshTokençš„è¿‡æœŸæ—¶é—´
 
-4 Ê¹ÓÃÁîÅÆ·ÃÎÊÓÃ»§ÒşË½Êı¾İ 
-ÀıÈç·ÃÎÊÒÔÏÂapi £º http://gw.open.1688.com/openapi/param2/1/cn.alibaba.open/member.get/1?memberId=xxx&access_token=ACCESS_TOKEN&_aop_signature=SIGENATURE Ç©ÃûÊ¾Àı¼û APIÇ©Ãû¹æÔò
+4 ä½¿ç”¨ä»¤ç‰Œè®¿é—®ç”¨æˆ·éšç§æ•°æ® 
+ä¾‹å¦‚è®¿é—®ä»¥ä¸‹api ï¼š http://gw.open.1688.com/openapi/param2/1/cn.alibaba.open/member.get/1?memberId=xxx&access_token=ACCESS_TOKEN&_aop_signature=SIGENATURE ç­¾åç¤ºä¾‹è§ APIç­¾åè§„åˆ™
 
-5.ÆäËûÒªµã£º
-1).Èç¹ûrefreshTokenÓĞĞ§²¢ÇÒaccessTokenÒÑ¾­¹ıÆÚ£¨³¬¹ı10Ğ¡Ê±£©£¬
-   ÄÇÃ´¿ÉÒÔÊ¹ÓÃrefresh_token»»È¡access_token£¬²»ÓÃÖØĞÂ½øĞĞÊÚÈ¨£¬È»ºó·ÃÎÊÓÃ»§ÒşË½Êı¾İ¡£
-   ·½·¨ÊÇ£º
-   »»È¡accessTokenµÄurlÊ¾ÀıÈçÏÂ£º
+5.å…¶ä»–è¦ç‚¹ï¼š
+1).å¦‚æœrefreshTokenæœ‰æ•ˆå¹¶ä¸”accessTokenå·²ç»è¿‡æœŸï¼ˆè¶…è¿‡10å°æ—¶ï¼‰ï¼Œ
+   é‚£ä¹ˆå¯ä»¥ä½¿ç”¨refresh_tokenæ¢å–access_tokenï¼Œä¸ç”¨é‡æ–°è¿›è¡Œæˆæƒï¼Œç„¶åè®¿é—®ç”¨æˆ·éšç§æ•°æ®ã€‚
+   æ–¹æ³•æ˜¯ï¼š
+   æ¢å–accessTokençš„urlç¤ºä¾‹å¦‚ä¸‹ï¼š
     https://gw.api.alibaba.com/openapi/param2/1/system.oauth2/getToken/YOUR_APPKEY
-   ÇëÇó²ÎÊıÈçÏÂ£º
+   è¯·æ±‚å‚æ•°å¦‚ä¸‹ï¼š
    grant_type=refresh_token&client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&refresh_token=REFRESH_TOKEN
-   ×¢£º´Ë½Ó¿Ú±ØĞëÊ¹ÓÃPOST·½·¨Ìá½»£»±ØĞëÊ¹ÓÃhttps
-   ´Ë´¦grant_type²ÎÊı±ØĞëÎªrefresh_token£¬±íÊ¾Í¨¹ırefreshToken»»È¡accessToken£¬¶ø²»ÊÇÍ¨¹ıÁÙÊ±code»»È¡
-   µ÷ÓÃgetToken½Ó¿ÚÊ±²»ĞèÒªÇ©Ãû
+   æ³¨ï¼šæ­¤æ¥å£å¿…é¡»ä½¿ç”¨POSTæ–¹æ³•æäº¤ï¼›å¿…é¡»ä½¿ç”¨https
+   æ­¤å¤„grant_typeå‚æ•°å¿…é¡»ä¸ºrefresh_tokenï¼Œè¡¨ç¤ºé€šè¿‡refreshTokenæ¢å–accessTokenï¼Œè€Œä¸æ˜¯é€šè¿‡ä¸´æ—¶codeæ¢å–
+   è°ƒç”¨getTokenæ¥å£æ—¶ä¸éœ€è¦ç­¾å
    
-2£©Èç¹ûrefreshTokenÒÑ¾­³¬¹ıÁË°ëÄêµÄÓĞĞ§ÆÚ£¬»òÕß£ºÓÃ»§ĞŞ¸ÄÃÜÂë£¬
-   »òÕß£ºÓÃ»§¶©¹ºµ½ÆÚ
-   »òÕßÓÃ»§Í¨¹ıÈ¡ÏûÊÚÈ¨¹¤¾ßÈ¡ÏûÁË¶ÔappµÄÊÚÈ¨£¬
-   ÄÇÃ´¶¼ĞèÒªÓÃ»§ÖØĞÂÊÚÈ¨»ñÈ¡refreshToken
-   £¨Õâ¸ö¹ı³Ì°¢Àï°Í°Í»á×Ô¼º¿ØÖÆ£¬µ¥ÓÃ»§µã»÷ÒÔÉÏÔÛÃÇµÄappÊ±£¬°¢Àï»á×Ô¼ºÅĞ¶ÏÊÇ·ñÓĞ
-    Õâ¼¸ÖÖÇé¿ö£¬ÓĞµÄ»°£¬°¢Àï»á×Ô¶¯µ¯³öÈÃÓÃ»§µÇÂ¼£¬²¢µã»÷ÊÚÈ¨µÄ½çÃæ£¬
-	È»ºó»¹ºÍµÚÒ»²½Ò»Ñù£¬´ø×ÅcodeÌø×ªµ½ÔÛÃÇµÄappÊ×Ò³£¬ÎÒÃÇµÄ´¦ÀíÁ÷³ÌºÍµÚÒ»²½Ò»Ñù
-	£©
-3£©»¹ÓĞ¾ÍÊÇÒ»Ğ©×Ô¶¯»¯¹¦ÄÜ£¬ÀıÈç×Ô¶¯ÖØ·¢£¬ÓÃ»§²»µÇÂ¼app,¶øºóÌ¨¶¨Ê±ÈÎÎñÒªÖ´ĞĞ
-   ´ËÊ±¾ÍĞèÒªÏµÍ³¸üĞÂÄÇĞ©¹ıÈ¥µÄrefresh_token.
-   ¹æÔòÈçÏÂ£º
-   Èç¹ûµ±Ç°Ê±¼äÀërefreshToken¹ıÆÚÊ±¼äÔÚ30ÌìÒÔÄÚ£¬ÄÇÃ´¿ÉÒÔµ÷ÓÃpostponeToken½Ó¿Ú»»È¡ĞÂµÄrefreshToken£»·ñÔò»á±¨´í¡£
-   »»È¡refreshTokenµÄurlÊ¾ÀıÈçÏÂ£º
+2ï¼‰å¦‚æœrefreshTokenå·²ç»è¶…è¿‡äº†åŠå¹´çš„æœ‰æ•ˆæœŸï¼Œæˆ–è€…ï¼šç”¨æˆ·ä¿®æ”¹å¯†ç ï¼Œ
+   æˆ–è€…ï¼šç”¨æˆ·è®¢è´­åˆ°æœŸ
+   æˆ–è€…ç”¨æˆ·é€šè¿‡å–æ¶ˆæˆæƒå·¥å…·å–æ¶ˆäº†å¯¹appçš„æˆæƒï¼Œ
+   é‚£ä¹ˆéƒ½éœ€è¦ç”¨æˆ·é‡æ–°æˆæƒè·å–refreshToken
+   ï¼ˆè¿™ä¸ªè¿‡ç¨‹é˜¿é‡Œå·´å·´ä¼šè‡ªå·±æ§åˆ¶ï¼Œå•ç”¨æˆ·ç‚¹å‡»ä»¥ä¸Šå’±ä»¬çš„appæ—¶ï¼Œé˜¿é‡Œä¼šè‡ªå·±åˆ¤æ–­æ˜¯å¦æœ‰
+    è¿™å‡ ç§æƒ…å†µï¼Œæœ‰çš„è¯ï¼Œé˜¿é‡Œä¼šè‡ªåŠ¨å¼¹å‡ºè®©ç”¨æˆ·ç™»å½•ï¼Œå¹¶ç‚¹å‡»æˆæƒçš„ç•Œé¢ï¼Œ
+	ç„¶åè¿˜å’Œç¬¬ä¸€æ­¥ä¸€æ ·ï¼Œå¸¦ç€codeè·³è½¬åˆ°å’±ä»¬çš„appé¦–é¡µï¼Œæˆ‘ä»¬çš„å¤„ç†æµç¨‹å’Œç¬¬ä¸€æ­¥ä¸€æ ·
+	ï¼‰
+3ï¼‰è¿˜æœ‰å°±æ˜¯ä¸€äº›è‡ªåŠ¨åŒ–åŠŸèƒ½ï¼Œä¾‹å¦‚è‡ªåŠ¨é‡å‘ï¼Œç”¨æˆ·ä¸ç™»å½•app,è€Œåå°å®šæ—¶ä»»åŠ¡è¦æ‰§è¡Œ
+   æ­¤æ—¶å°±éœ€è¦ç³»ç»Ÿæ›´æ–°é‚£äº›è¿‡å»çš„refresh_token.
+   è§„åˆ™å¦‚ä¸‹ï¼š
+   å¦‚æœå½“å‰æ—¶é—´ç¦»refreshTokenè¿‡æœŸæ—¶é—´åœ¨30å¤©ä»¥å†…ï¼Œé‚£ä¹ˆå¯ä»¥è°ƒç”¨postponeTokenæ¥å£æ¢å–æ–°çš„refreshTokenï¼›å¦åˆ™ä¼šæŠ¥é”™ã€‚
+   æ¢å–refreshTokençš„urlç¤ºä¾‹å¦‚ä¸‹ï¼š
 	https://gw.open.1688.com/openapi/param2/1/system.oauth2/postponeToken/YOUR_APPKEY
-	ÇëÇó²ÎÊıÈçÏÂ£º
+	è¯·æ±‚å‚æ•°å¦‚ä¸‹ï¼š
 	client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&refresh_token=REFRESH_TOKEN&access_token=ACCESS_TOKEN
-	·µ»Ø½á¹ûÀàËÆgetTokenµÄ·µ»Ø½á¹û£º
+	è¿”å›ç»“æœç±»ä¼¼getTokençš„è¿”å›ç»“æœï¼š
 	{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"}
 
-	×¢£º´Ë½Ó¿Ú±ØĞëÊ¹ÓÃhttps£¬getºÍpost¶¼ĞĞ
-	a) µ÷ÓÃpostponeToken½Ó¿ÚĞèÒªÊÚÈ¨£¬ËùÒÔ±ØĞë´øÉÏaccess_token²ÎÊı
-	b) µ÷ÓÃpostponeToken½Ó¿ÚÊ±²»ĞèÒªÇ©Ãû
-	c) refresh_token²ÎÊı±íÊ¾µ±Ç°Ê¹ÓÃµÄrefreshToken£¬Èç¹ûrefreshTokenµÄÓĞĞ§ÆÚºÍµ±Ç°Ê±¼äµÄ²îÖµĞ¡ÓÚ30Ìì£¬ÄÇÃ´µ÷ÓÃ´Ë½Ó¿Úºóµ±Ç°Ê¹ÓÃµÄrefreshTokenÊ§Ğ§£¬·µ»ØÒ»¸öĞÂµÄrefreshToken
+	æ³¨ï¼šæ­¤æ¥å£å¿…é¡»ä½¿ç”¨httpsï¼Œgetå’Œpostéƒ½è¡Œ
+	a) è°ƒç”¨postponeTokenæ¥å£éœ€è¦æˆæƒï¼Œæ‰€ä»¥å¿…é¡»å¸¦ä¸Šaccess_tokenå‚æ•°
+	b) è°ƒç”¨postponeTokenæ¥å£æ—¶ä¸éœ€è¦ç­¾å
+	c) refresh_tokenå‚æ•°è¡¨ç¤ºå½“å‰ä½¿ç”¨çš„refreshTokenï¼Œå¦‚æœrefreshTokençš„æœ‰æ•ˆæœŸå’Œå½“å‰æ—¶é—´çš„å·®å€¼å°äº30å¤©ï¼Œé‚£ä¹ˆè°ƒç”¨æ­¤æ¥å£åå½“å‰ä½¿ç”¨çš„refreshTokenå¤±æ•ˆï¼Œè¿”å›ä¸€ä¸ªæ–°çš„refreshToken
 	
 	
-6.ĞèÒª×¢ÒâµÄÊÇ£º
-  ÎŞÂÛÊÇÓÃ»§µÚÒ»´Î¹ºÂò£¬»¹ÊÇÓÃ»§ºóĞø´ÓÒÑ¾­¹ºÂòµÄ·şÎñÀï±ßµã»÷ÔÛÃÇµÄApp£¬°¢Àï¶¼»á´øÒ»¸öcode¸øÎÒÃÇµÄapp,
-  Ò²¾ÍÊÇËµÎÒÃÇÃ¿´Î¶¼ÊÇÍ¨¹ıÒÔÉÏµÄÁ÷³ÌÀ´»ñÈ¡¾¿¾¹ÊÇÄÄ¸öÓÃ»§µÇÂ¼ÁËÔÛÃÇµÄÓ¦ÓÃ¡£
+6.éœ€è¦æ³¨æ„çš„æ˜¯ï¼š
+  æ— è®ºæ˜¯ç”¨æˆ·ç¬¬ä¸€æ¬¡è´­ä¹°ï¼Œè¿˜æ˜¯ç”¨æˆ·åç»­ä»å·²ç»è´­ä¹°çš„æœåŠ¡é‡Œè¾¹ç‚¹å‡»å’±ä»¬çš„Appï¼Œé˜¿é‡Œéƒ½ä¼šå¸¦ä¸€ä¸ªcodeç»™æˆ‘ä»¬çš„app,
+  ä¹Ÿå°±æ˜¯è¯´æˆ‘ä»¬æ¯æ¬¡éƒ½æ˜¯é€šè¿‡ä»¥ä¸Šçš„æµç¨‹æ¥è·å–ç©¶ç«Ÿæ˜¯å“ªä¸ªç”¨æˆ·ç™»å½•äº†å’±ä»¬çš„åº”ç”¨ã€‚
     
 	   
 	   

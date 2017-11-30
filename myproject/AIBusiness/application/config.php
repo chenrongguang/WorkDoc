@@ -247,9 +247,8 @@ return [
     'gdr_app' => array(
         'buy_url' => 'http://www.baidu.com',//商品重发的订购页面地址
         'app_key' => '4938940',//商品重发app_key
-        'app_secrect' => 'q5HFMs0ZsE3s',//商品重发app_secret
+        'app_secrect' => 'q5HFMs0ZsE3*',//商品重发app_secret
         'app_name' => 'AI运营-商品智能重发',//商品重发应用名称
-        //'entrance_url' => 'http://218.60.42.138:11080/crgdev/callback/index.php'
         'entrance_url' => 'http://local.aibusiness.com/gdr/index/index'
     ),
     'code_to_token_port'=>443,
