@@ -85,5 +85,17 @@ class auth1688
         }
     }
 
+    //获取授权信息
+    public  function  getAuth($memberId,$para){
+        $obj_auth= new \app\model\Auth();
+        $where['memberId']=$memberId;
+        $where['app_key']=$para['app_key'];
+        $auth_result=$obj_auth->getSingle($where);
+        if($auth_result==false || $auth_result==null){
+            return false;
+        }
+        return $auth_result;
+    }
+
 
 }

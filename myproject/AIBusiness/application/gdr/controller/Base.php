@@ -37,18 +37,21 @@ class Base extends \think\Controller
         if($member_id==false){
             \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
-        //获取会员信息：
-        $obj_memberinfo=new \app\service\memberinfo();
-        $result_memberinfo=$obj_memberinfo->get_memberinfo($member_id);
-        if($result_memberinfo==null || $result_memberinfo==false){
-            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
-        }
+
         //获取会员订购app的信息：
         $obj_apporder=new \app\service\apporder();
         $result_apporder=$obj_apporder->get_apporderInfo($member_id,$para);
         if($result_apporder==null || $result_apporder==false){
             \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
+
+        //获取会员信息：
+        $obj_meminfo=new \app\service\memberinfo($member_id,$para);
+        $result_member=$obj_meminfo->get_memberinfo();
+        if($result_member==null || $result_member==false){
+            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
+        }
+
     }
 
     //登录判断
