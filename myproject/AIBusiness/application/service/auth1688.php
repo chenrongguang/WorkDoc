@@ -17,7 +17,6 @@ use think\Config;
  */
 class auth1688
 {
-
     //授权流程
     //返回登录的memberId
     public function auth_proc($code, $para)
@@ -94,7 +93,41 @@ class auth1688
         if($auth_result==false || $auth_result==null){
             return false;
         }
-        return $auth_result;
+        //如果已经过期了，使用refresh_token来更新
+        if($auth_result['expires']< date("Y-m-d H:i:s",time())){
+            //获取app_key信息：
+            $obj_app= new \app\model\App();
+            $where_app['app_key']=$auth_result['app_key'];
+            $app_info=$obj_app->getSingle($where_app);
+            $auth=$this->gettoken_by_refreshtoken($app_info,$auth_result['refresh_token']);
+
+            if ($auth == false) {
+                return false;
+            }
+            $obj_result_token=json_decode($auth);//转换为对象
+            $memberId = $obj_result_token->memberId;
+            //保存授权信息
+            $this->saveAuth($obj_result_token, $auth_result['app_key']);//保存更新到数据库
+            return $this->getAuth($memberId,$para); //再调用自身，查询一遍返回
+        }
+        else{
+            return $auth_result;
+        }
+    }
+
+    //获取token,使用refresh_token来获取
+    public function gettoken_by_refreshtoken($para,$refresh_token){
+        //准备url
+        $YOUR_APPKEY = $para['appkey'];
+        $YOUR_APPSECRET = $para['appsecrect'];
+        $auth_url = str_replace('YOUR_APPKEY',$YOUR_APPKEY,  config('gettoken_by_refreshtoken_url'));
+        $auth_url = str_replace('YOUR_APPSECRET',$YOUR_APPSECRET,  $auth_url);
+        $auth_url = str_replace('REFRESH_TOKEN',$refresh_token, $auth_url);
+        $data = "";
+
+        $get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'));
+        return $get_auth;
+
     }
 
 

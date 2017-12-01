@@ -1,9 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"E:\dev\workDoc\myproject\AIBusiness\public/../application/gdr\view\index\index.html";i:1511765111;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"E:\dev\workDoc\myproject\AIBusiness\public/../application/gdr\view\index\index.html";i:1511771506;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>AI智能运营-商品自动重发</title>
+	<title>AI运营-商品智能重发</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Loading Bootstrap -->
@@ -22,7 +22,6 @@
 	<h1>Hello, world!</h1>
 </div>
 <!-- /.container -->
-
 
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
 <script src="/dist/js/vendor/jquery.min.js"></script>
