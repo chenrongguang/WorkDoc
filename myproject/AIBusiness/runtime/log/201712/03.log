@@ -1,0 +1,507 @@
+---------------------------------------------------------------
+[ 2017-12-03T19:33:42+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：26]
+[ error ] [64]main(): Failed opening required 'D:\my\WorkDoc\AIBusiness\myproject\AIBusiness/extend/Aliyun/mns-autoloader.php' (include_path='.;C:\php\pear')[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\common.php:2]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T19:33:42+08:00 ] 127.0.0.1 127.0.0.1 GET /favicon.ico
+[ info ] local.aibusiness.com/favicon.ico [内存消耗：0kb] [文件加载：26]
+[ error ] [64]main(): Failed opening required 'D:\my\WorkDoc\AIBusiness\myproject\AIBusiness/extend/Aliyun/mns-autoloader.php' (include_path='.;C:\php\pear')[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\common.php:2]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T19:39:39+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：39]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE',
+)
+[ info ] [ PARAM ] array (
+  'code' => '51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ error ] [1]Class 'tools\route\CurlCall' not found[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\service\auth1688.php:55]
+---------------------------------------------------------------
+[ 2017-12-03T19:39:39+08:00 ] 127.0.0.1 127.0.0.1 GET /favicon.ico
+[ info ] local.aibusiness.com/favicon.ico [内存消耗：0kb] [文件加载：29]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:00:35+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index
+[ info ] local.aibusiness.com/gdr/index/index [内存消耗：0kb] [文件加载：34]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:02:15+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index
+[ info ] local.aibusiness.com/gdr/index/index [内存消耗：0kb] [文件加载：34]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:02:44+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index
+[ info ] local.aibusiness.com/gdr/index/index [内存消耗：0kb] [文件加载：34]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:03:26+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：40]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ error ] [1]Call to undefined method tools\route\CurlCall::call()[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\service\auth1688.php:55]
+---------------------------------------------------------------
+[ 2017-12-03T20:04:05+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：40]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ error ] [8]Undefined property: stdClass::$memberId[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\service\auth1688.php:29]
+---------------------------------------------------------------
+[ 2017-12-03T20:05:21+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：35]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:06:53+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7
+[ info ] local.aibusiness.com/gdr/index/index?code=51edd9fa-d2a5-428c-ad98-f9196ea3a1b7 [内存消耗：0kb] [文件加载：36]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '51edd9fa-d2a5-428c-ad98-f9196ea3a1b7',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:08:29+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=19278245-d654-4952-952d-30780572be93
+[ info ] local.aibusiness.com/gdr/index/index?code=19278245-d654-4952-952d-30780572be93 [内存消耗：0kb] [文件加载：47]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '19278245-d654-4952-952d-30780572be93',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'ai_business'[D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\library\think\db\Connection.php:293]
+---------------------------------------------------------------
+[ 2017-12-03T20:11:28+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=19278245-d654-4952-952d-30780572be93
+[ info ] local.aibusiness.com/gdr/index/index?code=19278245-d654-4952-952d-30780572be93 [内存消耗：0kb] [文件加载：36]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '19278245-d654-4952-952d-30780572be93',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T20:12:09+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=c6e5d670-4ad8-4ace-89da-2671dff1637a
+[ info ] local.aibusiness.com/gdr/index/index?code=c6e5d670-4ad8-4ace-89da-2671dff1637a [内存消耗：0kb] [文件加载：51]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'c6e5d670-4ad8-4ace-89da-2671dff1637a',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\gdr\controller\Index->index[ D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\application\gdr\controller\Index.php ]
+[ info ] [ VIEW ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\public/../application/gdr\view\index\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001556s ] mysql:dbname=ai_business;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ai_auth` [ RunTime:0.035896s ]
+[ sql ] [ SQL ] SELECT * FROM `ai_auth` WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' LIMIT 1 [ RunTime:0.001135s ]
+[ sql ] [ SQL ] UPDATE `ai_auth`  SET `aliId`='3162969548',`resource_owner`='晨曦银饰厂',`expires`='2017-12-04 06:11:43',`refresh_token`='b3dee8b6-f812-459a-9a67-3b115a424799',`access_token`='41c85142-f63c-4d43-afc1-c9a4b58e7ce0',`refresh_token_timeout`='20180507111546'  WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' [ RunTime:0.006814s ]
+[ sql ] [ SQL ] SELECT * FROM `ai_auth` WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' LIMIT 1 [ RunTime:0.002475s ]
+---------------------------------------------------------------
+[ 2017-12-03T20:12:15+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/img/favicon.ico
+[ info ] local.aibusiness.com/gdr/index/img/favicon.ico [内存消耗：0kb] [文件加载：34]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'img',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://local.aibusiness.com/gdr/index/index?code=c6e5d670-4ad8-4ace-89da-2671dff1637a',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-12-03T21:53:00+08:00 ] 127.0.0.1 127.0.0.1 GET /gdr/index/index?code=956a2f96-14e8-4ccb-ae70-9e9c7d487a0b
+[ info ] local.aibusiness.com/gdr/index/index?code=956a2f96-14e8-4ccb-ae70-9e9c7d487a0b [内存消耗：0kb] [文件加载：50]
+[ info ] [ LANG ] D:\my\WorkDoc\AIBusiness\myproject\AIBusiness\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'gdr',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'local.aibusiness.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; PHPSESSID=tkq08l8r2i2prst3d0fjuefjc1',
+)
+[ info ] [ PARAM ] array (
+  'code' => '956a2f96-14e8-4ccb-ae70-9e9c7d487a0b',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001496s ] mysql:dbname=ai_business;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ai_auth` [ RunTime:0.029969s ]
+[ sql ] [ SQL ] SELECT * FROM `ai_auth` WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' LIMIT 1 [ RunTime:0.001173s ]
+[ sql ] [ SQL ] UPDATE `ai_auth`  SET `aliId`='3162969548',`resource_owner`='晨曦银饰厂',`expires`='2017-12-04 07:50:58',`refresh_token`='b3dee8b6-f812-459a-9a67-3b115a424799',`access_token`='0d1cf823-41a2-464d-ac8e-a2c8b658df23',`refresh_token_timeout`='20180507111546'  WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' [ RunTime:0.005107s ]
+[ sql ] [ SQL ] SELECT * FROM `ai_auth` WHERE  `memberId` = 'b2b-316296954882808'  AND `app_key` = '4938940' LIMIT 1 [ RunTime:0.001482s ]

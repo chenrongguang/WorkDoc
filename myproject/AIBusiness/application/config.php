@@ -247,12 +247,13 @@ return [
     'gdr_app' => array(
         'buy_url' => 'http://www.baidu.com',//商品重发的订购页面地址
         'app_key' => '4938940',//商品重发app_key
-        'app_secrect' => 'q5HFMs0ZsE3s',//商品重发app_secret
+        'app_secrect' => 'q5HFMs0ZsE3',//商品重发app_secret
         'app_name' => 'AI运营-商品智能重发',//商品重发应用名称
         'entrance_url' => 'http://local.aibusiness.com/gdr/index/index'
     ),
     'code_to_token_port'=>443,
     'code_to_token_url' => 'https://gw.open.1688.com/openapi/http/1/system.oauth2/getToken/YOUR_APPKEY?grant_type=authorization_code&need_refresh_token=true&client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&redirect_uri=YOUR_REDIRECT_URI&code=YOUR_CODE',
     'gettoken_by_refreshtoken_url'=>'https://gw.api.alibaba.com/openapi/param2/1/system.oauth2/getToken/YOUR_APPKEY?grant_type=refresh_token&client_id=YOUR_APPKEY&client_secret=YOUR_APPSECRET&refresh_token=REFRESH_TOKEN',
+    'server_host'=>'gw.open.1688.com',
 
 ];
