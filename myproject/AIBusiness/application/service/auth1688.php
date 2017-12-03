@@ -26,10 +26,10 @@ class auth1688
             return false;
         }
         $obj_result_token=json_decode($result_token);//转换为对象
-        $memberId = $obj_result_token->memberId;
-        if (empty($memberId)) {
+        if(!isset($obj_result_token->memberId) ||  empty( $obj_result_token->memberId)){
             return false;
         }
+        $memberId = $obj_result_token->memberId;
         //保存授权信息
         $this->saveAuth($obj_result_token, $para['app_key']);
         return $memberId;
@@ -52,7 +52,7 @@ class auth1688
         $auth_url = str_replace('YOUR_CODE',$code,  $auth_url);
         $data = "";
 
-        $get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'));
+        $get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'),"code获取accesstoken");
         return $get_auth;
 
     }
@@ -125,7 +125,7 @@ class auth1688
         $auth_url = str_replace('REFRESH_TOKEN',$refresh_token, $auth_url);
         $data = "";
 
-        $get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'));
+        $get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'),"用refreshtoken获取accesstoken");
         return $get_auth;
 
     }

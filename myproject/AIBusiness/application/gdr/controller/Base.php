@@ -26,7 +26,7 @@ class Base extends \think\Controller
         $req = $request->param();
 
         if(!isset($req['code']) || empty($req['code'])){
-            \tools\route\Redirect::redirect(config('gdr_app.gdr_buy_url'));//如果没有收到code的话，跳转到购买的url
+            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
 
         $code=$req['code'];
@@ -39,13 +39,6 @@ class Base extends \think\Controller
             \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
 
-        //获取会员订购app的信息：
-        $obj_apporder=new \app\service\apporder();
-        $result_apporder=$obj_apporder->get_apporderInfo($member_id,$para);
-        if($result_apporder==null || $result_apporder==false){
-           // \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
-        }
-
         //获取会员信息：
         $obj_meminfo=new \app\service\memberinfo($member_id,$para);
         $result_member=$obj_meminfo->get_memberinfo();
@@ -53,6 +46,12 @@ class Base extends \think\Controller
            // \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
         }
 
+        //获取会员订购app的信息：
+        $obj_apporder=new \app\service\apporder();
+        $result_apporder=$obj_apporder->get_apporderInfo($member_id,$para);
+        if($result_apporder==null || $result_apporder==false){
+            // \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
+        }
 
     }
 

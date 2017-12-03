@@ -42,7 +42,7 @@ class memberinfo
     //保存会员信息
     public function save_memberinfo($result_meminfo)
     {
-        //{"aliId":"8888888888","resource_owner":"xxx","memberId":"xxxxxxx","expires_in":"36000","refresh_token":"479f9564-1049-456e-ab62-29d3e82277d9","access_token":"f14da3b8-b0b1-4f73-a5de-9bed637e0188","refresh_token_timeout":"20121222222222+0800"}
+       /*
         $memberId = $result_token->memberId;
         $obj_auth = new  \app\model\Auth();
         $where['memberId'] = $memberId;
@@ -64,6 +64,7 @@ class memberinfo
         else {
             $obj_auth->updateData($where, $data);
         }
+       */
     }
 
 }
