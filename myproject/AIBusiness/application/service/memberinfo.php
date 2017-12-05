@@ -18,6 +18,7 @@ use think\Config;
 class memberinfo
 {
     private $auth_info;
+    private $app_info;
 
     public function __construct($memberId, $para)
     {
@@ -28,16 +29,24 @@ class memberinfo
             return false;
         }
         $this->auth_info = $result_auth;
+        $this->app_info=$para;
     }
 
     /**
      */
     public function get_memberinfo()
     {
-        $test = new \app\service\apiclient\example($this->auth_info);
-        $result_test = $test->example_1();
-
-        //$get_auth = \tools\route\CurlCall::call($auth_url, $data, 30, config('code_to_token_port'));
+        $para['format']='param2';//请求协议格式
+        $para['method']='1/cn.alibaba.open/member.get';///API版本/API命名空间/API接口名
+        $para['app_key']=$this->auth_info['app_key'];//AppKey
+        $para['access_token']=$this->auth_info['access_token'];//请求协议格式
+        $para['app_secrect']=$this->app_info['app_secrect'];//app_secrect
+        $para['needtime']=0;
+        $para['needtoken']=0;
+        $business['memberId']=$this->auth_info['memberId'];
+        $url=\tools\route\MakeUrl::makeurl($para,$business);
+        $result_memberinfo = \tools\route\CurlCall::call($url, "", 30, config('api_port'),"member.get");
+        return $result_memberinfo;
         //return $get_auth;
     }
 

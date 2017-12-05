@@ -16,7 +16,6 @@ class Base extends \think\Controller
 
     public function _initialize()
     {
-
         //如果session在，那么什么都不处理
         $login_result = $this->login_check();
         if ($login_result == true) {
@@ -26,7 +25,9 @@ class Base extends \think\Controller
         $req = $request->param();
 
         if(!isset($req['code']) || empty($req['code'])){
-            \tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
+            //\tools\route\Redirect::redirect(config('gdr_app.buy_url'));//如果没有收到code的话，跳转到购买的url
+            //测试：
+
         }
 
         $code=$req['code'];
